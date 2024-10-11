@@ -44,7 +44,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
     - Title $ Decription
     - Movie Suggestions
       - MovieLists into N
-
+  - Use Layout to render children
 
 - Neflix GPt
    - Search Bar
