@@ -31,6 +31,26 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
   - **lint-staged** for running linters on staged Git files.
 
 ## Getting Started
+# Features
+
+- Login/Sign Up
+   - Sign In / Sign Up Form
+   - redirect to Browe Page
+
+- Browser (After authentication)
+  - Header
+  - Main Movie
+    - Tailer in Background
+    - Title $ Decription
+    - Movie Suggestions
+      - MovieLists into N
+
+
+- Neflix GPt
+   - Search Bar
+   - Movie Suggestions
+
+    
 
 ### Prerequisites
 
