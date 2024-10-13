@@ -36,6 +36,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
 - Login/Sign Up
    - Sign In / Sign Up Form
    - redirect to Browe Page
+   - Login form
 
 - Browser (After authentication)
   - Header
