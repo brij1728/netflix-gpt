@@ -12,14 +12,14 @@ export const Layout = () => {
         </div>
       </header>
 
-      {/* Main content area with padding and responsive height */}
+      {/* Main content area */}
       <main className="mx-auto w-full max-w-screen-xl flex-grow p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
         <Outlet />
       </main>
 
       {/* Footer with responsive height */}
-      <footer className="h-16 w-full bg-black p-4 sm:h-20 md:h-24 lg:h-28">
-        <div className="mx-auto flex h-full w-full max-w-screen-xl items-center">
+      <footer className="h-auto w-full bg-black p-4 sm:h-auto md:h-auto lg:h-auto">
+        <div className="mx-auto w-full max-w-screen-xl">
           <Footer />
         </div>
       </footer>
