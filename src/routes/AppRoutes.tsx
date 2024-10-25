@@ -1,4 +1,12 @@
-import { ErrorPage, HomePage, LoginPage } from '../pages';
+import {
+  ErrorPage,
+  FAQPage,
+  HelpPage,
+  HomePage,
+  LoginPage,
+  PrivacyPage,
+  TermsPage,
+} from '../pages';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 
 import { Layout } from '../components';
@@ -16,6 +24,22 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+      },
+      {
+        path: '/privacy',
+        element: <PrivacyPage />,
+      },
+      {
+        path: '/terms',
+        element: <TermsPage />,
+      },
+      {
+        path: '/help',
+        element: <HelpPage />,
+      },
+      {
+        path: '/faq',
+        element: <FAQPage />,
       },
       {
         path: '*',

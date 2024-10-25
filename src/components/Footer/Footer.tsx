@@ -33,9 +33,6 @@ export const Footer = () => {
             <Link to="/privacy" className="hover:text-white">
               Privacy
             </Link>
-            <Link to="/corporate" className="hover:text-white">
-              Corporate Information
-            </Link>
           </div>
         </div>
 
