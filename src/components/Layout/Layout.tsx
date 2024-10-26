@@ -1,8 +1,12 @@
+import { Outlet, useLocation } from 'react-router-dom';
+
 import { Footer } from '../Footer';
 import { Header } from '../Header';
-import { Outlet } from 'react-router-dom';
 
 export const Layout = () => {
+  const location = useLocation();
+  const isLoginPage = location.pathname === '/login';
+
   return (
     <div className="flex min-h-screen flex-col">
       {/* Header with responsive height */}
@@ -12,8 +16,10 @@ export const Layout = () => {
         </div>
       </header>
 
-      {/* Main content area */}
-      <main className="mx-auto w-full max-w-screen-xl flex-grow p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+      {/* Main content area with full width for Login page */}
+      <main
+        className={`flex-grow ${isLoginPage ? 'w-screen' : 'mx-auto w-full max-w-screen-xl p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28'}`}
+      >
         <Outlet />
       </main>
 
