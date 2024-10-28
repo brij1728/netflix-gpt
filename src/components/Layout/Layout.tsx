@@ -5,7 +5,8 @@ import { Header } from '../Header';
 
 export const Layout = () => {
   const location = useLocation();
-  const isLoginPage = location.pathname === '/login';
+
+  const isLoginPage = ['/login', '/signup'].includes(location.pathname);
 
   return (
     <div className="flex min-h-screen flex-col">

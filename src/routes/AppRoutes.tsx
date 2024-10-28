@@ -5,6 +5,7 @@ import {
   HomePage,
   LoginPage,
   PrivacyPage,
+  SignUpPage,
   TermsPage,
 } from '../pages';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <LoginPage />,
+      },
+      {
+        path: '/signup',
+        element: <SignUpPage />,
       },
       {
         path: '/privacy',

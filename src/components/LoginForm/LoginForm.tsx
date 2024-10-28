@@ -9,7 +9,7 @@ export const LoginForm = () => {
       className="flex min-h-screen w-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/netflix_login_page_background.jpg')" }}
     >
-      <div className="w-full max-w-md rounded-md bg-black bg-opacity-70 px-[68px] py-12 text-white">
+      <div className="w-full max-w-md rounded-md bg-netflix-black bg-opacity-70 px-[68px] py-12 text-white-100">
         <h2 className="mb-7 text-3xl font-bold">Sign In</h2>
         <div>
           <form className="space-y-4">
@@ -24,7 +24,7 @@ export const LoginForm = () => {
               <>
                 <button
                   type="submit"
-                  className="w-full rounded-md bg-red-600 py-3 font-semibold text-white transition duration-300 hover:bg-red-700"
+                  className="w-full rounded-md bg-netflix-red py-3 font-semibold text-white-100 transition duration-300 hover:bg-red-700"
                 >
                   Send sign-in code
                 </button>
@@ -41,7 +41,7 @@ export const LoginForm = () => {
                 />
                 <button
                   type="submit"
-                  className="mt-4 w-full rounded-md bg-red-600 py-3 font-semibold text-white transition duration-300 hover:bg-red-700"
+                  className="mt-4 w-full rounded-md bg-red-600 py-3 font-semibold text-white-100 transition duration-300 hover:bg-red-700"
                 >
                   Sign In
                 </button>
@@ -52,7 +52,7 @@ export const LoginForm = () => {
             <p className="text-sm">OR</p>
             <button
               onClick={() => setUsePassword(!usePassword)}
-              className="mt-2 w-full rounded-md bg-gray-600 py-3 text-white transition duration-300 hover:bg-gray-700"
+              className="mt-2 w-full rounded-md bg-gray-600 py-3 text-white-100 transition duration-300 hover:bg-gray-700"
             >
               {usePassword ? 'Use a sign-in code' : 'Use Password'}
             </button>
@@ -74,7 +74,7 @@ export const LoginForm = () => {
           <div className="mt-6 text-center">
             <p className="text-sm">
               New to Netflix?{' '}
-              <Link to="/" className="text-white hover:underline">
+              <Link to="/signup" className="text-white-100 hover:underline">
                 Sign up now.
               </Link>
             </p>

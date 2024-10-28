@@ -5,3 +5,4 @@ export * from './PrivacyPage';
 export * from './TermsPage';
 export * from './FAQPage';
 export * from './HelpPage';
+export * from './SignUpPage';

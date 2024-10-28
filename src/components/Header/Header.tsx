@@ -15,13 +15,13 @@ export const Header = () => {
 
       <div className="flex items-center space-x-2 sm:space-x-4">
         <div>
-          <button className="rounded-md border border-white bg-transparent px-2 py-1 text-white sm:px-4 sm:py-2">
+          <button className="border-white rounded-md border bg-transparent px-2 py-1 text-white-100 sm:px-4 sm:py-2">
             English
           </button>
         </div>
         <div>
           <Link to="/login">
-            <button className="rounded-md bg-red-600 px-2 py-1 text-white hover:bg-red-700 sm:px-4 sm:py-2">
+            <button className="rounded-md bg-netflix-red px-2 py-1 text-white-100 hover:bg-red-700 sm:px-4 sm:py-2">
               Sign In
             </button>
           </Link>
