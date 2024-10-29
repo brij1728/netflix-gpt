@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-export const HomePage = () => {
+const HomePage = () => {
   return (
-    <div>
+    <>
       {/* <h1 className="p-4 text-center text-3xl font-bold text-blue-600 underline">
         Netflix GPT
       </h1> */}
@@ -51,6 +51,8 @@ export const HomePage = () => {
         can also choose from a list of pre-generated prompts by clicking the
         "Use Prompt" button write 2000 words
       </p>
-    </div>
+    </>
   );
 };
+
+export default HomePage;

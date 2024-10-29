@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-export const PrivacyPage = () => {
+const PrivacyPage = () => {
   return (
-    <div>
+    <>
       <p>Privacy</p>
       // write 2000 words for privacy policy
       <p className="text-justify text-lg">
@@ -22,6 +22,8 @@ export const PrivacyPage = () => {
           @jamesperet
         </Link>
       </p>
-    </div>
+    </>
   );
 };
+
+export default PrivacyPage;

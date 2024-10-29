@@ -1,7 +1,9 @@
-export const TermsPage = () => {
+const TermsPage = () => {
   return (
-    <div>
+    <>
       <p>Terms</p>
-    </div>
+    </>
   );
 };
+
+export default TermsPage;

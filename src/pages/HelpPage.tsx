@@ -1,7 +1,9 @@
-export const HelpPage = () => {
+const HelpPage = () => {
   return (
-    <div>
+    <>
       <p>Help</p>
-    </div>
+    </>
   );
 };
+
+export default HelpPage;
