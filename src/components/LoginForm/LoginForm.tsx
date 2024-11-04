@@ -1,8 +1,35 @@
+import { useRef, useState } from 'react';
+
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { loginFormValidation } from '../../utils/loginFormValidation';
 
 export const LoginForm = () => {
   const [usePassword, setUsePassword] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const email = useRef<HTMLInputElement>(null);
+  const password = useRef<HTMLInputElement>(null);
+
+  // handle form submission
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const emailValue = email.current?.value || '';
+    const passwordValue = password.current?.value || '';
+
+    // Perform validation
+    const validationError = loginFormValidation({
+      email: emailValue,
+      password: passwordValue,
+    });
+    if (validationError) {
+      setError(validationError);
+    } else {
+      setError(null);
+      console.log('Form submitted');
+      console.log('Email:', emailValue);
+      console.log('Password:', passwordValue);
+    }
+  };
 
   return (
     <div
@@ -12,14 +39,16 @@ export const LoginForm = () => {
       <div className="w-full max-w-md rounded-md bg-netflix-black bg-opacity-70 px-[68px] py-12 text-white-100">
         <h2 className="mb-7 text-3xl font-bold">Sign In</h2>
         <div>
-          <form className="space-y-4">
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div>
               <input
+                ref={email}
                 type="text"
                 placeholder="Email or mobile number"
                 className="w-full rounded-md border border-gray-700 bg-gray-800 p-3 focus:border-gray-500 focus:outline-none"
               />
             </div>
+            {error && <p className="text-sm text-red-500">{error}</p>}
             {!usePassword ? (
               <>
                 <button
@@ -35,6 +64,7 @@ export const LoginForm = () => {
             ) : (
               <div>
                 <input
+                  ref={password}
                   type="password"
                   placeholder="Password"
                   className="w-full rounded-md border border-gray-700 bg-gray-800 p-3 focus:border-gray-500 focus:outline-none"
