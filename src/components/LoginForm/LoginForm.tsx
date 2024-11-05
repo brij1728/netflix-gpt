@@ -6,6 +6,7 @@ import { loginFormValidation } from '../../utils/loginFormValidation';
 export const LoginForm = () => {
   const [usePassword, setUsePassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -63,12 +64,21 @@ export const LoginForm = () => {
               </>
             ) : (
               <div>
-                <input
-                  ref={password}
-                  type="password"
-                  placeholder="Password"
-                  className="w-full rounded-md border border-gray-700 bg-gray-800 p-3 focus:border-gray-500 focus:outline-none"
-                />
+                <div className="relative">
+                  <input
+                    ref={password}
+                    type={showPassword ? 'text' : 'password'}
+                    placeholder="Password"
+                    className="w-full rounded-md border border-gray-700 bg-gray-800 p-3 focus:border-gray-500 focus:outline-none"
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="hover:text-white absolute inset-y-0 right-3 flex items-center text-gray-400"
+                  >
+                    {showPassword ? 'Hide' : 'Show'}
+                  </button>
+                </div>
                 <button
                   type="submit"
                   className="mt-4 w-full rounded-md bg-red-600 py-3 font-semibold text-white-100 transition duration-300 hover:bg-red-700"
