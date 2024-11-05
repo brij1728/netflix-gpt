@@ -7,6 +7,7 @@ export const LoginForm = () => {
   const [usePassword, setUsePassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [showRecaptchaInfo, setShowRecaptchaInfo] = useState(false);
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
@@ -122,10 +123,23 @@ export const LoginForm = () => {
           <p className="mt-4 text-xs text-gray-500">
             This page is protected by Google reCAPTCHA to ensure you're not a
             bot.{' '}
-            <Link to="/learn-more" className="text-blue-500 hover:underline">
+            <button
+              type="button"
+              onClick={() => setShowRecaptchaInfo(!showRecaptchaInfo)}
+              className="text-blue-500 hover:underline"
+            >
               Learn more.
-            </Link>
+            </button>
           </p>
+          {showRecaptchaInfo && (
+            <p className="mt-4 text-xs text-gray-500">
+              The information collected by Google reCAPTCHA is subject to the
+              Google Privacy Policy and Terms of Service, and is used for
+              providing, maintaining, and improving the reCAPTCHA service and
+              for general security purposes (it is not used for personalised
+              advertising by Google).
+            </p>
+          )}
         </div>
       </div>
     </div>
