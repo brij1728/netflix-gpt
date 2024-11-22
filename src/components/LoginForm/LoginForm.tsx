@@ -1,19 +1,25 @@
+import {
+  sendSignInLinkToEmail,
+  signInWithEmailAndPassword,
+} from 'firebase/auth';
 import { useRef, useState } from 'react';
 
 import { Link } from 'react-router-dom';
+import { auth } from '../../utils/firebase-config';
 import { loginFormValidation } from '../../utils/loginFormValidation';
 
 export const LoginForm = () => {
   const [usePassword, setUsePassword] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [showRecaptchaInfo, setShowRecaptchaInfo] = useState(false);
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  // handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const emailValue = email.current?.value || '';
     const passwordValue = password.current?.value || '';
@@ -21,15 +27,48 @@ export const LoginForm = () => {
     // Perform validation
     const validationError = loginFormValidation({
       email: emailValue,
-      password: passwordValue,
+      password: usePassword ? passwordValue : '',
     });
     if (validationError) {
       setError(validationError);
+      return;
+    }
+
+    setError(null);
+
+    if (usePassword) {
+      try {
+        // Handle Email/Password Sign-in
+        const userCredential = await signInWithEmailAndPassword(
+          auth,
+          emailValue,
+          passwordValue
+        );
+        console.log('User signed in:', userCredential.user);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to sign in with password');
+        }
+      }
     } else {
-      setError(null);
-      console.log('Form submitted');
-      console.log('Email:', emailValue);
-      console.log('Password:', passwordValue);
+      try {
+        // Handle Magic Link (Sign-in Code)
+        await sendSignInLinkToEmail(auth, emailValue, {
+          url: 'http://localhost:3000/', // Replace with your app's URL
+          handleCodeInApp: true,
+        });
+        setSuccessMessage(
+          'Sign-in link sent to your email. Check your inbox to complete the sign-in process.'
+        );
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('Failed to send sign-in link');
+        }
+      }
     }
   };
 
@@ -51,6 +90,9 @@ export const LoginForm = () => {
               />
             </div>
             {error && <p className="text-sm text-red-500">{error}</p>}
+            {successMessage && (
+              <p className="text-sm text-green-500">{successMessage}</p>
+            )}
             {!usePassword ? (
               <>
                 <button
