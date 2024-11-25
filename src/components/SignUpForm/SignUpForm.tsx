@@ -1,6 +1,6 @@
+import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
 import { useRef, useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { signupFormValidation } from '../../utils/signupFormValidation';
 
 export const SignUpForm = () => {
@@ -10,6 +10,8 @@ export const SignUpForm = () => {
   const name = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate(); // Initialize navigate
 
   // handle form submission
   const handleSubmit = (e: React.FormEvent) => {
@@ -33,6 +35,11 @@ export const SignUpForm = () => {
       console.log('Name:', nameValue);
       console.log('Email:', emailValue);
       console.log('Password:', passwordValue);
+
+      // Simulate successful signup and redirect
+      setTimeout(() => {
+        navigate('/'); // Navigate to the home page after signup
+      }, 500); // Optional delay to simulate API response
     }
   };
 
