@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
 import { signupFormValidation } from '../../utils/signupFormValidation';
@@ -38,8 +38,8 @@ export const SignUpForm = () => {
 
       // Simulate successful signup and redirect
       setTimeout(() => {
-        navigate('/'); // Navigate to the home page after signup
-      }, 500); // Optional delay to simulate API response
+        navigate('/');
+      }, 500);
     }
   };
 
