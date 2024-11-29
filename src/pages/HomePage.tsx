@@ -16,13 +16,7 @@ const HomePage = () => {
         can also choose from a list of pre-generated prompts by clicking the
         "Use Prompt" button
       </p>
-      <p>
-        This app is for demonstration purposes only and is not affiliated with
-        Netflix or OpenAI. It was created by{' '}
-        <Link to="/about" className="text-blue-600 underline">
-          @jamesperet
-        </Link>
-      </p>
+
       <p className="text-justify text-lg">
         Welcome to Netflix GPT, a simple web app that uses OpenAI's GPT-3 to
         generate movie and TV show descriptions based on user input. ChatGPT is
@@ -37,10 +31,10 @@ const HomePage = () => {
         This app is for demonstration purposes only and is not affiliated with
         Netflix or OpenAI. It was created by{' '}
         <Link to="/about" className="text-blue-600 underline">
-          @jamesperet
+          @brijesh
         </Link>
       </p>
-      // write 2000 words
+
       <p className="text-justify text-lg">
         Welcome to Netflix GPT, a simple web app that uses OpenAI's GPT-3 to
         generate movie and TV show descriptions based on user input. ChatGPT is
