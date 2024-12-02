@@ -3,7 +3,6 @@ interface ILoginForm {
   password: string;
 }
 
-// Update loginFormValidation to be a simple function instead of React.FC
 export const loginFormValidation = ({
   email,
   password,

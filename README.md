@@ -29,6 +29,8 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
   - **Prettier** for code formatting.
   - **Husky** for managing Git hooks.
   - **lint-staged** for running linters on staged Git files.
+- **Authentication**:
+  - **Modular Web API** for password authentication
 
 ## Getting Started
 # Features

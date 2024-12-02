@@ -56,7 +56,7 @@ export const LoginForm = () => {
       try {
         // Handle Magic Link (Sign-in Code)
         await sendSignInLinkToEmail(auth, emailValue, {
-          url: 'http://localhost:3000/', // Replace with your app's URL
+          url: 'https://netflixgpt-olive-ten.vercel.app/',
           handleCodeInApp: true,
         });
         setSuccessMessage(

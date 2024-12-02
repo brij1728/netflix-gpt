@@ -11,7 +11,7 @@ export const SignUpForm = () => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const navigate = useNavigate(); // Initialize navigate
+  const navigate = useNavigate(); // Get the navigate function from the router
 
   // handle form submission
   const handleSubmit = (e: React.FormEvent) => {
