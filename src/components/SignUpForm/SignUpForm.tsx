@@ -1,4 +1,5 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useRef, useState } from 'react';
 
 import { signupFormValidation } from '../../utils/signupFormValidation';
@@ -11,10 +12,11 @@ export const SignUpForm = () => {
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
 
-  const navigate = useNavigate(); // Get the navigate function from the router
+  const navigate = useNavigate();
+  const auth = getAuth(); // Initialize Firebase authentication
 
-  // handle form submission
-  const handleSubmit = (e: React.FormEvent) => {
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const nameValue = name.current?.value || '';
     const emailValue = email.current?.value || '';
@@ -26,20 +28,28 @@ export const SignUpForm = () => {
       email: emailValue,
       password: passwordValue,
     });
+
     if (validationError) {
       setError(validationError);
-      console.error(validationError);
-    } else {
-      setError(null);
-      console.log('Form submitted');
-      console.log('Name:', nameValue);
-      console.log('Email:', emailValue);
-      console.log('Password:', passwordValue);
+      return;
+    }
 
-      // Simulate successful signup and redirect
-      setTimeout(() => {
-        navigate('/');
-      }, 500);
+    setError(null); // Clear any previous errors
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        emailValue,
+        passwordValue
+      );
+      console.log('User signed up:', userCredential.user);
+      navigate('/'); // Redirect to home or dashboard on success
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('Failed to sign up. Please try again.');
+      }
     }
   };
 
@@ -62,7 +72,7 @@ export const SignUpForm = () => {
               />
               <input
                 ref={email}
-                type="text"
+                type="email"
                 placeholder="Email or mobile number"
                 className="w-full rounded-md border border-gray-700 bg-gray-800 p-3 focus:border-gray-500 focus:outline-none"
                 required
