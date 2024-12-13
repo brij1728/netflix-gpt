@@ -14,7 +14,7 @@ export const Footer = () => {
                 href="tel:000-800-919-1694"
                 className="underline hover:text-white-100"
               >
-                000-800-919-1694
+                0919-169-1000
               </a>
             </p>
           </div>
