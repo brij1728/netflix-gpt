@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, getAuth } from 'firebase/auth';
 import { useRef, useState } from 'react';
 
+import { auth } from '../../utils/firebase-config';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signupFormValidation } from '../../utils/signupFormValidation';
 
 export const SignUpForm = () => {
@@ -13,7 +14,6 @@ export const SignUpForm = () => {
   const password = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
-  const auth = getAuth(); // Initialize Firebase authentication
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -46,7 +46,7 @@ export const SignUpForm = () => {
       navigate('/'); // Redirect to home or dashboard on success
     } catch (err) {
       if (err instanceof Error) {
-        setError(err.message);
+        setError(`${err.message} ${err.name}`);
       } else {
         setError('Failed to sign up. Please try again.');
       }
