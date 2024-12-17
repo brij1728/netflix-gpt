@@ -1,10 +1,10 @@
+import { Link, useNavigate } from 'react-router-dom';
 import {
   sendSignInLinkToEmail,
   signInWithEmailAndPassword,
 } from 'firebase/auth';
 import { useRef, useState } from 'react';
 
-import { Link } from 'react-router-dom';
 import { auth } from '../../utils/firebase-config';
 import { loginFormValidation } from '../../utils/loginFormValidation';
 
@@ -17,6 +17,8 @@ export const LoginForm = () => {
 
   const email = useRef<HTMLInputElement>(null);
   const password = useRef<HTMLInputElement>(null);
+
+  const navigate = useNavigate();
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -44,10 +46,12 @@ export const LoginForm = () => {
           emailValue,
           passwordValue
         );
-        console.log('User signed in:', userCredential.user);
+        const user = userCredential.user;
+        console.log('User signed in:', user);
+        navigate('/'); // Redirect to home or dashboard on success
       } catch (err) {
         if (err instanceof Error) {
-          setError(err.message);
+          setError(`${err.message} ${err.name}`);
         } else {
           setError('Failed to sign in with password');
         }
