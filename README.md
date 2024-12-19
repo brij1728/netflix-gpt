@@ -39,6 +39,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
    - Sign In / Sign Up Form
    - redirect to Browe Page
    - Login form
+   - Create Redux Store with userSlice
 
 - Browser (After authentication)
   - Header
@@ -184,5 +185,3 @@ This project is open-source and available under the [MIT License](LICENSE).
 - **Live Demo**: [https://netflixgpt-olive-ten.vercel.app/](https://netflixgpt-olive-ten.vercel.app/)
 
 ```
-
-This `README.md` file now includes all relevant information based on your updated project configuration, including scripts, dependencies, and features. Let me know if you'd like any further customizations!
