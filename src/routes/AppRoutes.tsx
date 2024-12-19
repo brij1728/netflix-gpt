@@ -2,6 +2,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 
 import { Layout } from '../components';
+import { PrivateRoute } from './privateRoutes';
 
 // Lazy load each page
 const HomePage = lazy(() => import('../pages/HomePage'));
@@ -21,7 +22,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage />,
+        element: <PrivateRoute />, // Protect the home page
+        children: [
+          {
+            path: '/',
+            element: <HomePage />,
+          },
+        ],
       },
       {
         path: '/login',
