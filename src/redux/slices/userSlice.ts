@@ -16,13 +16,19 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUser: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload;
+      state.users = action.payload; // Replace the user list
     },
     addUser: (state, action: PayloadAction<User>) => {
-      state.users.push(action.payload);
+      state.users.push(action.payload); // Add a single user
     },
-    removeUser: (state, action: PayloadAction<number>) => {
-      state.users = state.users.filter((user) => user.id !== action.payload);
+    removeUser: (state, action: PayloadAction<string | undefined>) => {
+      if (action.payload) {
+        // Remove specific user by `uid`
+        state.users = state.users.filter((user) => user.uid !== action.payload);
+      } else {
+        // Clear all users if no `uid` is provided
+        state.users = [];
+      }
     },
   },
 });
