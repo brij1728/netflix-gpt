@@ -1,9 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
+import { AppDispatch } from '../../redux/store';
+import { addUser } from '../../redux/slices/userSlice';
 import { auth } from '../../utils/firebase-config';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signupFormValidation } from '../../utils/signupFormValidation';
+import { updateProfile } from 'firebase/auth';
+import { useDispatch } from 'react-redux';
 
 export const SignUpForm = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -14,6 +18,7 @@ export const SignUpForm = () => {
   const password = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +27,6 @@ export const SignUpForm = () => {
     const emailValue = email.current?.value || '';
     const passwordValue = password.current?.value || '';
 
-    // Perform validation
     const validationError = signupFormValidation({
       name: nameValue,
       email: emailValue,
@@ -34,7 +38,7 @@ export const SignUpForm = () => {
       return;
     }
 
-    setError(null); // Clear any previous errors
+    setError(null);
 
     try {
       const userCredential = await createUserWithEmailAndPassword(
@@ -42,8 +46,34 @@ export const SignUpForm = () => {
         emailValue,
         passwordValue
       );
-      console.log('User signed up:', userCredential.user);
-      navigate('/'); // Redirect to home or dashboard on success
+
+      const user = userCredential.user;
+
+      console.log('User signed up:', user);
+
+      // Update the user's profile
+      await updateProfile(user, {
+        displayName: nameValue,
+        photoURL: 'https://avatars.githubusercontent.com/u/59231373?v=4',
+      });
+
+      // Retrieve and dispatch the updated user details
+      if (auth.currentUser) {
+        const updatedUser = {
+          uid: auth.currentUser.uid,
+          displayName: auth.currentUser.displayName,
+          email: auth.currentUser.email,
+          photoURL: auth.currentUser.photoURL,
+        };
+
+        dispatch(addUser(updatedUser));
+        console.log('Dispatched User:', updatedUser);
+
+        navigate('/'); // Redirect to home on success
+      } else {
+        console.error('Failed to retrieve updated user information.');
+        setError('Failed to retrieve updated user information.');
+      }
     } catch (err) {
       if (err instanceof Error) {
         setError(`${err.message} ${err.name}`);

@@ -5,8 +5,11 @@ import {
 } from 'firebase/auth';
 import { useRef, useState } from 'react';
 
+import { AppDispatch } from '../../redux/store';
+import { addUser } from '../../redux/slices/userSlice';
 import { auth } from '../../utils/firebase-config';
 import { loginFormValidation } from '../../utils/loginFormValidation';
+import { useDispatch } from 'react-redux';
 
 export const LoginForm = () => {
   const [usePassword, setUsePassword] = useState(false);
@@ -19,6 +22,7 @@ export const LoginForm = () => {
   const password = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch<AppDispatch>();
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -48,6 +52,17 @@ export const LoginForm = () => {
         );
         const user = userCredential.user;
         console.log('User signed in:', user);
+
+        // Dispatch user to Redux
+        dispatch(
+          addUser({
+            uid: user.uid,
+            displayName: user.displayName || 'Anonymous',
+            email: user.email,
+            photoURL: user.photoURL || 'default-avatar-url',
+          })
+        );
+
         navigate('/'); // Redirect to home or dashboard on success
       } catch (err) {
         if (err instanceof Error) {

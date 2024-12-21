@@ -1,11 +1,18 @@
 import { Link, useNavigate } from 'react-router-dom';
 
+import { RootState } from '../../redux/store';
+import { User } from '../../types/user';
 import { auth } from '../../utils/firebase-config';
 import { signOut } from 'firebase/auth';
-import { useAuth } from '../../hooks/useAuth';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
-  const user = useAuth(); // Get the current user from context
+  //const user = useAuth(); // Get the current user from context
+  const user = useSelector((store: RootState) => store.user.users[0]) as
+    | User
+    | undefined;
+
+  console.log('User in Header:', user); // Check if user is updated
 
   const navigate = useNavigate();
 
@@ -40,12 +47,19 @@ export const Header = () => {
         </div>
         <div>
           {user ? (
-            <button
-              onClick={handleSignOut}
-              className="rounded-md bg-netflix-red px-2 py-1 text-white-100 hover:bg-red-700 sm:px-4 sm:py-2"
-            >
-              Sign Out
-            </button>
+            <>
+              <img
+                src={user.photoURL || '/default-avatar-url'}
+                alt={user.displayName || 'No Name'}
+                className="h-8 w-8 rounded-full sm:h-10 sm:w-10"
+              />
+              <button
+                onClick={handleSignOut}
+                className="rounded-md bg-netflix-red px-2 py-1 text-white-100 hover:bg-red-700 sm:px-4 sm:py-2"
+              >
+                Sign Out
+              </button>
+            </>
           ) : (
             <Link to="/login">
               <button className="rounded-md bg-netflix-red px-2 py-1 text-white-100 hover:bg-red-700 sm:px-4 sm:py-2">
