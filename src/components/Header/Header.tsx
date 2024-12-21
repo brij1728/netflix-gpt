@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 import { auth } from '../../utils/firebase-config';
 import { signOut } from 'firebase/auth';
 import { useAuth } from '../../hooks/useAuth';
@@ -6,12 +7,16 @@ import { useAuth } from '../../hooks/useAuth';
 export const Header = () => {
   const user = useAuth(); // Get the current user from context
 
+  const navigate = useNavigate();
+
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       console.log('User signed out');
+      navigate('/login'); // Redirect to login on sign out
     } catch (error) {
       console.error('Error signing out:', error);
+      navigate('/error'); // Redirect to error page on error
     }
   };
 
