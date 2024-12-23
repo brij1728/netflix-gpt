@@ -1,18 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
 
 import { RootState } from '../../redux/store';
-import { User } from '../../types/user';
 import { auth } from '../../utils/firebase-config';
 import { signOut } from 'firebase/auth';
 import { useSelector } from 'react-redux';
 
 export const Header = () => {
   //const user = useAuth(); // Get the current user from context
-  const user = useSelector((store: RootState) => store.user.users[0]) as
-    | User
-    | undefined;
+  const user = useSelector((store: RootState) => store.user.currentUser);
 
-  console.log('User in Header:', user); // Check if user is updated
+  console.log('User in Header:', user); // Log the current user
 
   const navigate = useNavigate();
 

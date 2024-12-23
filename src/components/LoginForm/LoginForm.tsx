@@ -6,9 +6,9 @@ import {
 import { useRef, useState } from 'react';
 
 import { AppDispatch } from '../../redux/store';
-import { addUser } from '../../redux/slices/userSlice';
 import { auth } from '../../utils/firebase-config';
 import { loginFormValidation } from '../../utils/loginFormValidation';
+import { setCurrentUser } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
 
 export const LoginForm = () => {
@@ -53,9 +53,9 @@ export const LoginForm = () => {
         const user = userCredential.user;
         console.log('User signed in:', user);
 
-        // Dispatch user to Redux
+        // Dispatch the user to Redux as the `currentUser`
         dispatch(
-          addUser({
+          setCurrentUser({
             uid: user.uid,
             displayName: user.displayName || 'Anonymous',
             email: user.email,
