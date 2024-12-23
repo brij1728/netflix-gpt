@@ -6,10 +6,9 @@ import { signOut } from 'firebase/auth';
 import { useSelector } from 'react-redux';
 
 export const Header = () => {
-  //const user = useAuth(); // Get the current user from context
   const user = useSelector((store: RootState) => store.user.currentUser);
 
-  console.log('User in Header:', user); // Log the current user
+  console.log('User in Header:', user); // Log the current user from Redux
 
   const navigate = useNavigate();
 

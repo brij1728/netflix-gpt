@@ -1,12 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { addUser, setCurrentUser } from '../../redux/slices/userSlice';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { useRef, useState } from 'react';
 
 import { AppDispatch } from '../../redux/store';
 import { auth } from '../../utils/firebase-config';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { signupFormValidation } from '../../utils/signupFormValidation';
-import { updateProfile } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 
 export const SignUpForm = () => {
@@ -20,7 +19,6 @@ export const SignUpForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
 
-  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const nameValue = name.current?.value || '';
@@ -62,7 +60,6 @@ export const SignUpForm = () => {
 
       // Dispatch updated user to Redux
       const updatedUser = auth.currentUser;
-
       if (updatedUser) {
         dispatch(
           addUser({
