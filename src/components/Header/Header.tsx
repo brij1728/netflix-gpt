@@ -43,7 +43,7 @@ export const Header = () => {
         </div>
         <div>
           {user ? (
-            <>
+            <div className="flex items-center space-x-2">
               <img
                 src={user.photoURL || '/default-avatar-url'}
                 alt={user.displayName || 'No Name'}
@@ -55,7 +55,7 @@ export const Header = () => {
               >
                 Sign Out
               </button>
-            </>
+            </div>
           ) : (
             <Link to="/login">
               <button className="rounded-md bg-netflix-red px-2 py-1 text-white-100 hover:bg-red-700 sm:px-4 sm:py-2">
