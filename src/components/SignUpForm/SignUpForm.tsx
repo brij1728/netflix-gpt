@@ -52,7 +52,7 @@ export const SignUpForm = () => {
       // Update the user's profile
       await updateProfile(user, {
         displayName: nameValue,
-        photoURL: 'https://avatars.githubusercontent.com/u/59231373?v=4',
+        photoURL: `User_Logo.webp`,
       });
 
       // Refresh the user

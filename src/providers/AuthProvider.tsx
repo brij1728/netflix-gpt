@@ -29,6 +29,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       }
       setLoading(false); // Stop loading once the user is checked
     });
+    // Unsubscribe from the listener when the component unmounts
     return () => unsubscribe();
   }, []);
 
