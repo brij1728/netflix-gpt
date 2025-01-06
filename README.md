@@ -1,4 +1,3 @@
-Here is an updated `README.md` file to reflect the new details based on the provided `package.json` configuration:
 
 ```markdown
 # Netflix GPT
@@ -157,13 +156,6 @@ public/
 ├─ index.html           # HTML entry file
 ```
 
-## Contributing
-
-Contributions are welcome! Please open an issue or submit a pull request for any bug fixes or feature requests.
-
-## License
-
-This project is open-source and available under the [MIT License](LICENSE).
 
 ## Links
 
