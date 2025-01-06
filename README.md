@@ -17,23 +17,9 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
 - **Deployment**: Vercel
 - **Git Hooks**: Husky, lint-staged
 
+
+
 ## Features
-
-- **React (18.x)**: For building the user interface.
-- **TypeScript**: Provides static type checking.
-- **Vite**: For fast development and build processes.
-- **Tailwind CSS**: For styling.
-- **GPT Integration**: Uses GPT models to provide interactive content-related features.
-- **Code Quality Tools**:
-  - **ESLint** for linting.
-  - **Prettier** for code formatting.
-  - **Husky** for managing Git hooks.
-  - **lint-staged** for running linters on staged Git files.
-- **Authentication**:
-  - **Modular Web API** for password authentication
-
-## Getting Started
-# Features
 
 - Login/Sign Up
    - Sign In / Sign Up Form
@@ -41,7 +27,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
    - Login form
    - Create Redux Store with userSlice
 
-- Browser (After authentication)
+- Browser (After authentication) (Working on this part)
   - Header
   - Main Movie
     - Tailer in Background
@@ -50,7 +36,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
       - MovieLists into N
   - Use Layout to render children
 
-- Neflix GPt
+- Neflix GPt (have not implemented)
    - Search Bar
    - Movie Suggestions
 
@@ -60,7 +46,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
 
 Make sure you have the following installed:
 
-- **Node.js** (>= 14.x)
+- **Node.js** (>= 20.x)
 - **npm** (>= 6.x) or **yarn**
 
 ### Installation
