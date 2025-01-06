@@ -1,5 +1,4 @@
 
-```markdown
 # Netflix GPT
 
 A React-based web application that uses GPT technology to provide enhanced features related to Netflix content. This project is built using Vite, TypeScript, Tailwind CSS, and is deployed on Vercel.
@@ -162,4 +161,4 @@ public/
 - **GitHub Repository**: [https://github.com/brij1728/netflix-gpt](https://github.com/brij1728/netflix-gpt)
 - **Live Demo**: [https://netflixgpt-olive-ten.vercel.app/](https://netflixgpt-olive-ten.vercel.app/)
 
-```
+
