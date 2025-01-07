@@ -21,7 +21,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
 
 - Login/Sign Up
    - Sign In / Sign Up Form
-   - redirect to Browe Page
+   - redirect to Home Page
    - Login form
    - Create Redux Store with userSlice
 
@@ -29,12 +29,12 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
   - Header
   - Main Movie
     - Tailer in Background
-    - Title $ Decription
+    - Title $ Description
     - Movie Suggestions
       - MovieLists into N
   - Use Layout to render children
 
-- Neflix GPt (have not implemented)
+- Netflix GPt (have not implemented)
    - Search Bar
    - Movie Suggestions
 
