@@ -10,7 +10,9 @@ import {
 } from './routes';
 
 import { Layout } from '../components';
+import { Loader } from '../components/ui';
 import { PrivateRoute } from './privateRoutes';
+import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 // Create the router configuration
@@ -21,45 +23,68 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <PrivateRoute />,
-        children: [
-          {
-            path: '/',
-            element: <HomePage />,
-          },
-        ],
+        element: (
+          <PrivateRoute>
+            <Suspense fallback={<Loader />}>
+              <HomePage />
+            </Suspense>
+          </PrivateRoute>
+        ),
       },
       {
         path: '/login',
-        element: <LoginPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LoginPage />
+          </Suspense>
+        ),
       },
       {
         path: '/signup',
-        element: <SignUpPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <SignUpPage />
+          </Suspense>
+        ),
       },
       {
         path: '/privacy',
-        element: <PrivacyPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <PrivacyPage />
+          </Suspense>
+        ),
       },
       {
         path: '/terms',
-        element: <TermsPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <TermsPage />
+          </Suspense>
+        ),
       },
       {
         path: '/help',
-        element: <HelpPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <HelpPage />
+          </Suspense>
+        ),
       },
       {
         path: '/faq',
-        element: <FAQPage />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <FAQPage />
+          </Suspense>
+        ),
       },
       {
         path: '*',
         element: (
-          <ErrorPage
-            title="404 Not Found"
-            message="The requested page does not exist."
-          />
+          <Suspense fallback={<Loader />}>
+            <ErrorPage />
+          </Suspense>
         ),
       },
     ],

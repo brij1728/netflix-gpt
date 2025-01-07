@@ -3,6 +3,7 @@ import { addUser, removeUser } from '../redux/slices/userSlice';
 
 import { AppDispatch } from '../redux/store';
 import { AuthContext } from '../context/AuthContext';
+import { Loader } from '../components/ui';
 import { User } from 'firebase/auth';
 import { router } from '../routes/Router';
 import { subscribeToAuthChanges } from '../utils/subscribeToAuthChanges';
@@ -34,7 +35,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>; // Show a loading indicator
+    return <Loader />; // Show a loading indicator
   }
 
   return (
