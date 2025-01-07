@@ -10,6 +10,7 @@ import {
 } from './routes';
 
 import { Layout } from '../components';
+import { Loader } from '../components/ui';
 import { PrivateRoute } from './privateRoutes';
 import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
@@ -24,7 +25,7 @@ export const router = createBrowserRouter([
         path: '/',
         element: (
           <PrivateRoute>
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <HomePage />
             </Suspense>
           </PrivateRoute>
@@ -33,7 +34,7 @@ export const router = createBrowserRouter([
       {
         path: '/login',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <LoginPage />
           </Suspense>
         ),
@@ -41,7 +42,7 @@ export const router = createBrowserRouter([
       {
         path: '/signup',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <SignUpPage />
           </Suspense>
         ),
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
       {
         path: '/privacy',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <PrivacyPage />
           </Suspense>
         ),
@@ -57,7 +58,7 @@ export const router = createBrowserRouter([
       {
         path: '/terms',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <TermsPage />
           </Suspense>
         ),
@@ -65,7 +66,7 @@ export const router = createBrowserRouter([
       {
         path: '/help',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <HelpPage />
           </Suspense>
         ),
@@ -73,7 +74,7 @@ export const router = createBrowserRouter([
       {
         path: '/faq',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <FAQPage />
           </Suspense>
         ),
@@ -81,7 +82,7 @@ export const router = createBrowserRouter([
       {
         path: '*',
         element: (
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Loader />}>
             <ErrorPage />
           </Suspense>
         ),
