@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { getCurrentPlayingMovies } from '../api/fetchMovies';
+import { useEffect } from 'react';
 
 const HomePage = () => {
+  useEffect(() => {
+    getCurrentPlayingMovies();
+  }, []);
   return (
     <>
       {/* <h1 className="p-4 text-center text-3xl font-bold text-blue-600 underline">
