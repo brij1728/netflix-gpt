@@ -1,4 +1,4 @@
-import { User } from 'firebase/auth';
+import { User } from '../types/user';
 import { createContext } from 'react';
 
 type AuthContextType = User | null;

@@ -1,5 +1,5 @@
 import { AuthContext } from '../context/AuthContext';
-import { User } from 'firebase/auth';
+import { User } from '../types/user';
 import { useContext } from 'react';
 
 export const useAuth = (): User | null => {
