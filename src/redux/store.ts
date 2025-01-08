@@ -15,6 +15,7 @@ import userReducer from './slices/userSlice';
 const persistConfig = {
   key: 'root',
   storage,
+  whitelist: ['currentUser'],
 };
 
 const persistedReducer = persistReducer(persistConfig, userReducer);

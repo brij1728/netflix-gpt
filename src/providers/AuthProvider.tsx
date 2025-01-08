@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { addUser, removeUser } from '../redux/slices/userSlice';
+import {
+  addUser,
+  removeUser,
+  setCurrentUser as setReduxCurrentUser,
+} from '../redux/slices/userSlice';
 
 import { AppDispatch } from '../redux/store';
 import { AuthContext } from '../context/AuthContext';
 import { Loader } from '../components/ui';
-import { User } from 'firebase/auth';
-import { router } from '../routes/Router';
+import { User } from '../types/user';
 import { subscribeToAuthChanges } from '../utils/subscribeToAuthChanges';
 import { useDispatch } from 'react-redux';
 
@@ -22,18 +25,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
       setCurrentUser(user);
       if (user) {
         const { uid, displayName, email, photoURL } = user;
-        dispatch(addUser({ uid, displayName, email, photoURL })); // Add user to Redux
-        router.navigate('/'); // Redirect to home on login
-      } else {
-        dispatch(removeUser()); // Clear user from Redux
-        router.navigate('/login'); // Redirect to login on logout
-      }
-      setLoading(false); // Stop loading once the user is checked
-    });
-    // Unsubscribe from the listener when the component unmounts
-    return () => unsubscribe();
-  }, []);
 
+        const userData: User = { uid, displayName, email, photoURL };
+        dispatch(addUser(userData));
+        dispatch(setReduxCurrentUser(userData));
+      } else {
+        dispatch(removeUser());
+      }
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, [dispatch]);
   if (loading) {
     return <Loader />; // Show a loading indicator
   }

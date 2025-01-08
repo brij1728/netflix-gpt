@@ -1,6 +1,6 @@
-import { User, onAuthStateChanged } from 'firebase/auth';
-
+import { User } from '../types/user';
 import { auth } from '../utils/firebase-config';
+import { onAuthStateChanged } from 'firebase/auth';
 
 export const subscribeToAuthChanges = (
   callback: (user: User | null) => void

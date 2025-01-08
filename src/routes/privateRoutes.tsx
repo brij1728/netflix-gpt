@@ -9,7 +9,7 @@ interface PrivateRouteProps {
 }
 
 export const PrivateRoute: React.FC<PrivateRouteProps> = ({ children }) => {
-  const user = useSelector((state: RootState) => state.user.users[0]);
+  const user = useSelector((state: RootState) => state.user.currentUser);
 
   return user ? <>{children}</> : <Navigate to="/login" />;
 };
