@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export const Footer = () => {
   return (
     <footer className="bg-black py-8 text-gray-400">
-      <div className="container mx-auto px-4">
+      <div className="flex w-full items-center justify-between px-4 sm:h-16 md:h-20">
         {/* Footer Content: Two columns on medium and row on large screens */}
         <div className="flex flex-col space-y-6 md:grid md:grid-cols-2 lg:flex lg:flex-row lg:items-center lg:justify-between lg:space-y-0">
           {/* Left Section: Contact Info */}
@@ -11,10 +11,10 @@ export const Footer = () => {
             <p className="text-sm">
               Questions? Call{' '}
               <a
-                href="tel:000-800-919-1694"
+                href="tel:091-800-919-1694"
                 className="underline hover:text-white-100"
               >
-                0919-169-1000
+                091-800-919-1694
               </a>
             </p>
           </div>
@@ -37,7 +37,7 @@ export const Footer = () => {
         </div>
 
         {/* Language Switcher */}
-        <div className="mt-6 flex justify-center lg:mt-8 lg:justify-start">
+        {/* <div className="mt-6 flex justify-center lg:mt-8 lg:justify-start">
           <button className="flex items-center rounded bg-gray-800 px-4 py-2 text-white-100">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -55,6 +55,23 @@ export const Footer = () => {
             </svg>
             English
           </button>
+        </div> */}
+
+        {/* Bottom Section: Legal Info */}
+        <div className="mt-8 text-center text-sm">
+          <p>Netflix GPT</p>
+
+          <div className="flex justify-center space-x-2">
+            <p>Created by</p>
+            <Link
+              to=" https://www.linkedin.com/in/abhishek-singh-9b7b2b1a9/"
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-white-100"
+            >
+              Brijesh Singh
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

@@ -93,7 +93,7 @@ export const LoginForm = () => {
 
   return (
     <div
-      className="flex min-h-screen w-screen items-center justify-center bg-cover bg-center bg-no-repeat"
+      className="flex min-h-screen items-center justify-center bg-cover bg-center bg-no-repeat"
       style={{ backgroundImage: "url('/netflix_login_page_background.jpg')" }}
     >
       <div className="w-full max-w-md rounded-md bg-netflix-black bg-opacity-70 px-[68px] py-12 text-white-100">
