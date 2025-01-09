@@ -37,11 +37,6 @@ export const Header = () => {
 
       <div className="flex items-center space-x-2 sm:space-x-4">
         <div>
-          <button className="border-white rounded-md border bg-transparent px-2 py-1 text-white-100 sm:px-4 sm:py-2">
-            English
-          </button>
-        </div>
-        <div>
           {user ? (
             <div className="flex items-center space-x-2">
               <img

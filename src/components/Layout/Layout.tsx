@@ -19,7 +19,7 @@ export const Layout = () => {
 
       {/* Main content area with full width for Login page */}
       <main
-        className={`flex-grow ${isLoginPage ? 'w-screen' : 'mx-auto w-full max-w-screen-xl p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28'}`}
+        className={`flex-grow ${isLoginPage ? 'w-full' : 'mx-auto w-full max-w-screen-xl p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28'}`}
       >
         <Outlet />
       </main>

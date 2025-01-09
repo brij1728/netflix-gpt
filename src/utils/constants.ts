@@ -9,3 +9,5 @@ export const API_OPTIONS = {
     Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_READ_ACCESS_TOKEN}`,
   },
 };
+
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/brijeshapp/';
