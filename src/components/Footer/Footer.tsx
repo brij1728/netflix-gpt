@@ -1,3 +1,4 @@
+import { LINKEDIN_URL } from '../../utils/constants';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -25,17 +26,15 @@ export const Footer = () => {
           </Link>
           <div className="group relative">
             <Link
-              to="#"
-              onClick={(e) => {
-                e.preventDefault();
-                window.location.href = 'mailto:bk10895@gmail.com';
-              }}
+              to={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               className="hover:text-white hover:underline"
             >
               Contact Us
             </Link>
             <div className="text-white absolute left-0 mt-2 hidden w-max rounded bg-gray-800 px-2 py-1 text-xs group-hover:block">
-              bk10895@gmail.com
+              Brijesh Kumar
             </div>
           </div>
         </nav>
