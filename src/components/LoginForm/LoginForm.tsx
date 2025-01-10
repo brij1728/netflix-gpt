@@ -29,14 +29,18 @@ export const LoginForm = () => {
     e.preventDefault();
     setLoading(true);
     setError(null);
+    setSuccessMessage(null);
 
     const emailValue = email.current?.value || '';
-    const passwordValue = password.current?.value || '';
+    const passwordValue = usePassword
+      ? password.current?.value || ''
+      : undefined;
 
-    // Validate form input
+    console.log('Submitted Email:', emailValue);
+
     const validationError = loginFormValidation({
       email: emailValue,
-      password: usePassword ? passwordValue : '',
+      password: passwordValue, // Pass undefined or empty string if password is not used
     });
 
     if (validationError) {
@@ -51,7 +55,7 @@ export const LoginForm = () => {
         const userCredential = await signInWithEmailAndPassword(
           auth,
           emailValue,
-          passwordValue
+          passwordValue || ''
         );
         const user = userCredential.user;
 
@@ -68,7 +72,7 @@ export const LoginForm = () => {
       } else {
         // Magic Link Sign-in
         await sendSignInLinkToEmail(auth, emailValue, {
-          url: 'https://netflixgpt-olive-ten.vercel.app/login',
+          url: 'https://netflixgpt-olive-ten.vercel.app/',
           handleCodeInApp: true,
         });
         setSuccessMessage(
@@ -77,7 +81,8 @@ export const LoginForm = () => {
       }
     } catch (err) {
       const errorCode = (err as { code?: string }).code;
-      // Handle common Firebase errors
+      console.error('Error during authentication:', err);
+
       if (errorCode === 'auth/user-not-found') {
         setError('No user found with this email. Please sign up first.');
       } else if (errorCode === 'auth/wrong-password') {
