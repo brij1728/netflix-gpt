@@ -3,6 +3,7 @@ import {
   FAQPage,
   HelpPage,
   HomePage,
+  LinkSignInPage,
   LoginPage,
   PrivacyPage,
   SignUpPage,
@@ -36,6 +37,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <LoginPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/link-signin',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <LinkSignInPage />
           </Suspense>
         ),
       },

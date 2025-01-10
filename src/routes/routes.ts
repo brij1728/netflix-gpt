@@ -9,3 +9,4 @@ export const TermsPage = lazy(() => import('../pages/TermsPage'));
 export const HelpPage = lazy(() => import('../pages/HelpPage'));
 export const FAQPage = lazy(() => import('../pages/FAQPage'));
 export const ErrorPage = lazy(() => import('../pages/ErrorPage'));
+export const LinkSignInPage = lazy(() => import('../pages/LinkSignInPage'));
