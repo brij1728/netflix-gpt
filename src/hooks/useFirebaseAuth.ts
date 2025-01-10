@@ -32,20 +32,6 @@ export const useFirebaseAuth = () => {
     }
   };
 
-  const completeSignIn = async (email: string, link: string) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const userCredential = await signInWithEmailLink(auth, email, link);
-      return userCredential.user; // Return the signed-in user
-    } catch (err) {
-      setError('Failed to complete sign-in. Please try again.');
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const passwordSignIn = async (email: string, password: string) => {
     setLoading(true);
     setError(null);
@@ -64,13 +50,27 @@ export const useFirebaseAuth = () => {
     }
   };
 
+  const completeSignIn = async (email: string, link: string) => {
+    setLoading(true);
+    setError(null);
+    try {
+      const userCredential = await signInWithEmailLink(auth, email, link);
+      return userCredential.user; // Return the signed-in user
+    } catch (err) {
+      setError('Failed to complete sign-in. Please try again.');
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return {
     loading,
     error,
     successMessage,
     sendMagicLink,
-    completeSignIn,
     passwordSignIn,
+    completeSignIn,
     setError,
     setSuccessMessage,
   };

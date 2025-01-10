@@ -24,6 +24,7 @@ export const LoginForm = () => {
     sendMagicLink,
     passwordSignIn,
     setError,
+    setSuccessMessage,
   } = useFirebaseAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -58,9 +59,35 @@ export const LoginForm = () => {
           emailValue,
           'https://netflixgpt-olive-ten.vercel.app/link-signin'
         );
+        setSuccessMessage(
+          'Sign-in link sent to your email. Please check your inbox to complete the sign-in.'
+        );
       }
-    } catch {
-      // Errors are handled in the hook
+    } catch (err) {
+      if (err instanceof Error) {
+        console.error('Login Error:', err.message);
+        const errorCode = (err as { code?: string }).code;
+
+        switch (errorCode) {
+          case 'auth/invalid-email':
+            setError('Invalid email address.');
+            break;
+          case 'auth/user-disabled':
+            setError('This account has been disabled. Please contact support.');
+            break;
+          case 'auth/user-not-found':
+            setError('No user found with this email.');
+            break;
+          case 'auth/wrong-password':
+            setError('Incorrect password. Please try again.');
+            break;
+          default:
+            setError(err.message || 'An unexpected error occurred.');
+        }
+      } else {
+        console.error('Unknown error during login:', err);
+        setError('An unknown error occurred. Please try again.');
+      }
     }
   };
 
@@ -118,9 +145,7 @@ export const LoginForm = () => {
         <p className="text-sm">
           New to Netflix?{' '}
           <Link to="/signup" className="text-netflix-red hover:underline">
-            <button className="rounded-md bg-white-100 px-2 py-1 text-netflix-red hover:bg-white-300 hover:underline sm:px-4 sm:py-2">
-              Sign Up
-            </button>
+            Sign Up
           </Link>
         </p>
         <p className="mt-4 text-xs text-gray-500">
