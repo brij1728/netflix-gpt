@@ -8,14 +8,13 @@ import { useSelector } from 'react-redux';
 export const Header = () => {
   const user = useSelector((store: RootState) => store.user.currentUser);
 
-  console.log('User in Header:', user); // Log the current user from Redux
-
   const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       console.log('User signed out');
+
       navigate('/login'); // Redirect to login on sign out
     } catch (error) {
       console.error('Error signing out:', error);
@@ -26,7 +25,7 @@ export const Header = () => {
   return (
     <div className="flex w-full items-center justify-between px-4">
       <div>
-        <Link to="/">
+        <Link to={user ? '/' : '/login'}>
           <img
             src="/Netflix_Logo_PMS.png"
             alt="Netflix Logo"

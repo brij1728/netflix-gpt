@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
-import { AuthLayout } from '../ui';
 import { loginFormValidation } from '../../utils/loginFormValidation';
 import { setCurrentUser } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
@@ -92,7 +91,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <AuthLayout title="Sign In">
+    <>
       <form className="space-y-4" onSubmit={handleSubmit}>
         <input
           ref={email}
@@ -165,6 +164,6 @@ export const LoginForm = () => {
           </p>
         )}
       </div>
-    </AuthLayout>
+    </>
   );
 };

@@ -16,7 +16,6 @@ import { PrivateRoute } from './privateRoutes';
 import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-// Create the router configuration
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -24,12 +23,13 @@ export const router = createBrowserRouter([
     children: [
       {
         path: '/',
+
         element: (
-          <PrivateRoute>
-            <Suspense fallback={<Loader />}>
+          <Suspense fallback={<Loader />}>
+            <PrivateRoute>
               <HomePage />
-            </Suspense>
-          </PrivateRoute>
+            </PrivateRoute>
+          </Suspense>
         ),
       },
       {
@@ -42,11 +42,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/link-signin',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <LinkSignInPage />
-          </Suspense>
-        ),
+        element: <LinkSignInPage />,
       },
       {
         path: '/signup',
