@@ -1,3 +1,4 @@
+import { LINKEDIN_URL } from '../utils/constants';
 import { Link } from 'react-router-dom';
 
 const PrivacyPage = () => {
@@ -18,8 +19,8 @@ const PrivacyPage = () => {
       <p>
         This app is for demonstration purposes only and is not affiliated with
         Netflix or OpenAI. It was created by{' '}
-        <Link to="/about" className="text-blue-600 underline">
-          @jamesperet
+        <Link to={LINKEDIN_URL} className="text-blue-600 underline">
+          Brijesh Kumar
         </Link>
       </p>
     </>

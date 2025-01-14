@@ -146,6 +146,7 @@ export const useFirebaseAuth = () => {
     checkEmailExists,
     registerUser,
     setError,
+    setLoading,
     setSuccessMessage,
   };
 };

@@ -1,4 +1,4 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { RootState } from '../../redux/store';
 import { auth } from '../../utils/firebase-config';
@@ -8,18 +8,14 @@ import { useSelector } from 'react-redux';
 export const Header = () => {
   const user = useSelector((store: RootState) => store.user.currentUser);
 
-  //console.log('User in Header:', user); // Log the current user from Redux
-
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       console.log('User signed out');
-      if (location.pathname !== '/login') {
-        navigate('/login'); // Redirect to login on sign out
-      }
+
+      navigate('/login'); // Redirect to login on sign out
     } catch (error) {
       console.error('Error signing out:', error);
       navigate('/error'); // Redirect to error page on error
@@ -29,7 +25,7 @@ export const Header = () => {
   return (
     <div className="flex w-full items-center justify-between px-4">
       <div>
-        <Link to="/">
+        <Link to={user ? '/' : '/login'}>
           <img
             src="/Netflix_Logo_PMS.png"
             alt="Netflix Logo"

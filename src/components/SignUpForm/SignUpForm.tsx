@@ -15,10 +15,13 @@ export const SignUpForm = () => {
     registerUser,
     checkEmailExists,
     setError,
+    setLoading,
   } = useFirebaseAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLoading(true);
+    setError(null);
     const nameValue = name.current?.value || '';
     const emailValue = email.current?.value || '';
     const passwordValue = password.current?.value || '';
