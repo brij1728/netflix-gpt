@@ -11,12 +11,9 @@ import {
 } from './routes';
 
 import { Layout } from '../components';
-import { Loader } from '../components/ui';
 import { PrivateRoute } from './privateRoutes';
-import { Suspense } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
-// Create the router configuration
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -26,75 +23,41 @@ export const router = createBrowserRouter([
         path: '/',
         element: (
           <PrivateRoute>
-            <Suspense fallback={<Loader />}>
-              <HomePage />
-            </Suspense>
+            <HomePage />
           </PrivateRoute>
         ),
       },
       {
         path: '/login',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <LoginPage />
-          </Suspense>
-        ),
+        element: <LoginPage />,
       },
       {
         path: '/link-signin',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <LinkSignInPage />
-          </Suspense>
-        ),
+        element: <LinkSignInPage />,
       },
       {
         path: '/signup',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <SignUpPage />
-          </Suspense>
-        ),
+        element: <SignUpPage />,
       },
       {
         path: '/privacy',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <PrivacyPage />
-          </Suspense>
-        ),
+        element: <PrivacyPage />,
       },
       {
         path: '/terms',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <TermsPage />
-          </Suspense>
-        ),
+        element: <TermsPage />,
       },
       {
         path: '/help',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <HelpPage />
-          </Suspense>
-        ),
+        element: <HelpPage />,
       },
       {
         path: '/faq',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <FAQPage />
-          </Suspense>
-        ),
+        element: <FAQPage />,
       },
       {
         path: '*',
-        element: (
-          <Suspense fallback={<Loader />}>
-            <ErrorPage />
-          </Suspense>
-        ),
+        element: <ErrorPage />,
       },
     ],
   },

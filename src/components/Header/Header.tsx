@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 import { RootState } from '../../redux/store';
 import { auth } from '../../utils/firebase-config';
@@ -8,15 +8,18 @@ import { useSelector } from 'react-redux';
 export const Header = () => {
   const user = useSelector((store: RootState) => store.user.currentUser);
 
-  console.log('User in Header:', user); // Log the current user from Redux
+  //console.log('User in Header:', user); // Log the current user from Redux
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
       console.log('User signed out');
-      navigate('/login'); // Redirect to login on sign out
+      if (location.pathname !== '/login') {
+        navigate('/login'); // Redirect to login on sign out
+      }
     } catch (error) {
       console.error('Error signing out:', error);
       navigate('/error'); // Redirect to error page on error
