@@ -93,9 +93,12 @@ export const SignUpForm = () => {
         </button>
       </form>
       <div className="mt-6 text-center">
-        <p className="text-sm">
-          Already have an account?{' '}
-          <Link to="/login" className="text-netflix-red hover:underline">
+        <p className="flex flex-col items-center justify-center gap-1 text-sm sm:flex-row sm:gap-2 md:text-base">
+          Already have an account?
+          <Link
+            to="/login"
+            className="rounded bg-white-100 px-2 py-1 text-netflix-red hover:underline sm:px-3 sm:py-2"
+          >
             Sign In
           </Link>
         </p>
