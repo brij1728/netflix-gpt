@@ -5,7 +5,6 @@ const PrivacyPage = () => {
   return (
     <>
       <p>Privacy</p>
-      // write 2000 words for privacy policy
       <p className="text-justify text-lg">
         Welcome to Netflix GPT, a simple web app that uses OpenAI's GPT-3 to
         generate movie and TV show descriptions based on user input. ChatGPT is
