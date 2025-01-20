@@ -11,3 +11,6 @@ export const API_OPTIONS = {
 };
 
 export const LINKEDIN_URL = 'https://www.linkedin.com/in/brijeshapp/';
+
+export const THE_MOVIE_DB_URL =
+  'https://api.themoviedb.org/3/movie/now_playing?page=1';
