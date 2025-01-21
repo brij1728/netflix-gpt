@@ -1,11 +1,27 @@
+import { AppDispatch } from '../redux/store';
 import { Link } from 'react-router-dom';
 import { getCurrentPlayingMovies } from '../api/fetchMovies';
+import { setNowPlayingMovies } from '../redux/slices/moviesSlice';
+import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 
 const HomePage = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   useEffect(() => {
-    getCurrentPlayingMovies();
-  }, []);
+    const fetchMovies = async () => {
+      try {
+        const movies = await getCurrentPlayingMovies();
+        dispatch(setNowPlayingMovies(movies.results));
+        console.log(movies.results);
+      } catch (error) {
+        console.error('Failed to fetch movies:', error);
+      }
+    };
+
+    fetchMovies();
+  }, [dispatch]);
+
   return (
     <>
       {/* <h1 className="p-4 text-center text-3xl font-bold text-blue-600 underline">

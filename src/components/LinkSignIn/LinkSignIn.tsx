@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 
+import { AppDispatch } from '../../redux/store';
 import { BrowserUtils } from '../../utils/browserUtils';
 import { auth } from '../../utils/firebase-config';
 import { isSignInWithEmailLink } from 'firebase/auth';
@@ -11,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 export const LinkSignIn = () => {
   const [email, setEmail] = useState('');
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const { completeSignIn, loading, error, setError } = useFirebaseAuth();
 
   useEffect(() => {

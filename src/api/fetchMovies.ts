@@ -5,6 +5,5 @@ export const getCurrentPlayingMovies = async () => {
 
   const response = await fetch(url, API_OPTIONS);
   const data = await response.json();
-  console.log(data);
   return data;
 };
