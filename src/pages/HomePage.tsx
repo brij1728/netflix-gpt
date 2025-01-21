@@ -1,31 +1,22 @@
-import { AppDispatch } from '../redux/store';
 import { Link } from 'react-router-dom';
-import { getCurrentPlayingMovies } from '../api/fetchMovies';
-import { setNowPlayingMovies } from '../redux/slices/moviesSlice';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { MovieList } from '../components/Movies/MovieList';
 
 const HomePage = () => {
-  const dispatch = useDispatch<AppDispatch>();
-
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        const movies = await getCurrentPlayingMovies();
-        dispatch(setNowPlayingMovies(movies.results));
-        console.log(movies.results);
-      } catch (error) {
-        console.error('Failed to fetch movies:', error);
-      }
-    };
-
-    fetchMovies();
-  }, [dispatch]);
-
   return (
     <>
       {/* <h1 className="p-4 text-center text-3xl font-bold text-blue-600 underline">
         Netflix GPT
+        main container
+          - video background
+          - video title
+          
+        secondary container
+          - movieList
+            - movieCard
+              - movieImage
+              - movieTitle
+              - movieDescription
+        
       </h1> */}
       <p className="text-justify text-lg">
         Welcome to Netflix GPT, a simple web app that uses OpenAI's GPT-3 to
@@ -66,6 +57,8 @@ const HomePage = () => {
         can also choose from a list of pre-generated prompts by clicking the
         "Use Prompt" button write 2000 words
       </p>
+      <h1>Welcome to Netflix GPT</h1>
+      <MovieList />
     </>
   );
 };
