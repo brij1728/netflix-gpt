@@ -9,6 +9,8 @@ export const MovieList: React.FC = () => {
   if (error) return <div>{error}</div>;
 
   return (
-    <div>{movies?.map((movie) => <MovieCard key={movie.id} {...movie} />)}</div>
+    <div className="grid grid-cols-1 gap-2 p-2 sm:grid-cols-2 sm:gap-4 md:grid-cols-3 md:gap-6 md:p-4 lg:grid-cols-4">
+      {movies?.map((movie) => <MovieCard key={movie.id} {...movie} />)}
+    </div>
   );
 };
