@@ -4,7 +4,7 @@ import { PrimaryMovieBanner } from './PrimaryMovieBanner';
 import { useMovieVideos } from '../../hooks/useMovieVideos';
 import { useMovies } from '../../hooks/useMovies';
 
-export const MoviePrimaryContainer: React.FC = () => {
+export const MoviePrimaryContainer = () => {
   const { movies, loading, error } = useMovies();
 
   // Always call the useMovieVideos hook with a fallback
