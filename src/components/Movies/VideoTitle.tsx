@@ -27,7 +27,7 @@ export const VideoTitle: React.FC<Movie> = ({ ...movie }) => {
 
         {/* Action Buttons */}
         <div className="mt-4 flex justify-between gap-2 md:gap-4">
-          <Button className="bg-white-100 text-netflix-black hover:bg-opacity-80">
+          <Button className="bg-white-100 px-1 py-[2px] text-[12px] text-netflix-black hover:bg-opacity-80 sm:px-2 sm:py-1 sm:text-sm md:px-4 md:py-2 md:text-base lg:text-xl">
             <div className="flex items-center justify-center gap-2">
               <FaPlay />
               Play
@@ -36,7 +36,7 @@ export const VideoTitle: React.FC<Movie> = ({ ...movie }) => {
 
           <Button
             onClick={handleModalToggle}
-            className="bg-gray-500 text-white-100 hover:bg-gray-700"
+            className="bg-gray-500 px-1 py-[2px] text-white-100 hover:bg-gray-700 sm:px-2 sm:py-1 sm:text-sm md:px-4 md:py-2 md:text-base lg:text-xl"
           >
             <div className="flex items-center justify-center gap-2">
               <IoIosInformationCircleOutline size={25} /> More Info
