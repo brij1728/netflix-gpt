@@ -1,3 +1,5 @@
+import { Button } from '../ui';
+import { FaPlay } from 'react-icons/fa';
 import { Movie } from '../../types/movies';
 
 export const MovieCard: React.FC<Movie> = ({ ...movie }) => {
@@ -19,6 +21,17 @@ export const MovieCard: React.FC<Movie> = ({ ...movie }) => {
       >
         {movie.overview}
       </p>
+      <div className="mt-2 flex w-full justify-between">
+        <Button className="bg-netflix-black text-white-100 hover:bg-gray-700">
+          <div className="flex items-center justify-center gap-2">
+            <FaPlay />
+            Play
+          </div>
+        </Button>
+        <Button className="bg-netflix-black text-white-100 hover:bg-gray-700">
+          More Info
+        </Button>
+      </div>
     </div>
   );
 };
