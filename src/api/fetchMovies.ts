@@ -1,9 +1,16 @@
-import { API_OPTIONS, THE_MOVIE_DB_URL } from '../utils/constants';
-
 import { Movie } from '../types/movies';
+import { THE_MOVIE_DB_URL } from '../utils/constants';
 
 export const fetchNowPlayingMovies = async () => {
-  const url = THE_MOVIE_DB_URL;
+  const url = `${THE_MOVIE_DB_URL}/now_playing?page=1`;
+
+  const API_OPTIONS = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${import.meta.env.VITE_TMDB_API_READ_ACCESS_TOKEN}`,
+    },
+  };
 
   const response = await fetch(url, API_OPTIONS);
   if (!response.ok) {
