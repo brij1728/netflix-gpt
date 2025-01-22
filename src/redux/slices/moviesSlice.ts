@@ -5,7 +5,7 @@ import { Video } from '../../types/video';
 
 interface MoviesState {
   nowPlayingMovies: Movie[] | null;
-  movieVideos: Record<string, Video[]>;
+  movieVideos: Record<string, Video | null>;
 }
 
 const initialState: MoviesState = {
@@ -22,9 +22,9 @@ const moviesSlice = createSlice({
     },
     setMovieVideos: (
       state,
-      action: PayloadAction<{ movieId: string; videos: Video[] }>
+      action: PayloadAction<{ movieId: string; video: Video | null }>
     ) => {
-      state.movieVideos[action.payload.movieId] = action.payload.videos;
+      state.movieVideos[action.payload.movieId] = action.payload.video;
     },
   },
 });

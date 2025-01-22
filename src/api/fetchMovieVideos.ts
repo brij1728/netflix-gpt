@@ -1,7 +1,9 @@
 import { THE_MOVIE_DB_URL } from '../utils/constants';
 import { Video } from '../types/video';
 
-export const fetchMovieVideos = async (movieId: string): Promise<Video[]> => {
+export const fetchMovieVideos = async (
+  movieId: string
+): Promise<Video | null> => {
   const url = `${THE_MOVIE_DB_URL}/${movieId}/videos`;
   const options = {
     method: 'GET',
@@ -20,14 +22,20 @@ export const fetchMovieVideos = async (movieId: string): Promise<Video[]> => {
 
     const data = await response.json();
 
-    // Filter for YouTube trailers
-    const trailerVideos = data.results.filter(
-      (video: Video) => video.type === 'Trailer' && video.site === 'YouTube'
-    );
+    if (!Array.isArray(data.results) || data.results.length === 0) {
+      return null; // No videos available
+    }
 
-    return trailerVideos;
+    // video types
+    const prioritizedTypes = ['Trailer'];
+
+    const prioritizedVideo = data.results.find((video: Video) =>
+      prioritizedTypes.includes(video.type)
+    );
+    //console.log(prioritizedVideo || data.results[0]);
+    return prioritizedVideo || data.results[0];
   } catch (err) {
     console.error('Error fetching movie videos:', err);
-    return []; // Return an empty array if there's an error
+    return null;
   }
 };

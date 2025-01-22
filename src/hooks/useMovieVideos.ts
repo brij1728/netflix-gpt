@@ -7,7 +7,7 @@ import { fetchMovieVideos } from '../api/fetchMovieVideos';
 import { setMovieVideos } from '../redux/slices/moviesSlice';
 
 export const useMovieVideos = (): {
-  movieVideos: Record<string, Video[]>;
+  movieVideos: Record<string, Video | null>; // One video per movie
   loading: boolean;
   error: string | null;
 } => {
@@ -31,27 +31,26 @@ export const useMovieVideos = (): {
 
         const videos = await Promise.all(
           movies.map(async (movie) => {
-            // Check if videos for this movie are already in Redux
             if (movieVideos[movie.id]) {
-              return { movieId: movie.id, videos: movieVideos[movie.id] };
+              return { movieId: movie.id, video: movieVideos[movie.id] };
             }
 
             try {
-              const data: Video[] = await fetchMovieVideos(movie.id);
-              return { movieId: movie.id, videos: data };
+              const video = await fetchMovieVideos(movie.id);
+              return { movieId: movie.id, video };
             } catch (err) {
               console.error(
-                `Failed to fetch videos for movie ${movie.id}:`,
+                `Failed to fetch video for movie ${movie.id}:`,
                 err
               );
-              return { movieId: movie.id, videos: [] };
+              return { movieId: movie.id, video: null };
             }
           })
         );
 
         // Dispatch fetched videos to Redux
-        videos.forEach(({ movieId, videos }) => {
-          dispatch(setMovieVideos({ movieId, videos }));
+        videos.forEach(({ movieId, video }) => {
+          dispatch(setMovieVideos({ movieId, video }));
         });
 
         setLoading(false);

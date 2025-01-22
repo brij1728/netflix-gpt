@@ -20,7 +20,7 @@ export const MovieList: React.FC = () => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
       {movies?.map((movie: Movie) => {
-        const trailer = movieVideos[movie.id]?.[0]; // Get the first trailer
+        const trailer = movieVideos[movie.id]; // Get the first trailer
 
         return (
           <div key={movie.id}>

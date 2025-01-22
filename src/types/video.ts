@@ -8,5 +8,5 @@ export interface Video {
   published_at: string;
   site: string;
   size: number;
-  type?: string;
+  type: string;
 }
