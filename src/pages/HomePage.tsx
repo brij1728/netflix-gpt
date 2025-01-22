@@ -1,9 +1,10 @@
-import { MovieList } from '../components/Movies/MovieList';
+import { MoviePrimaryContainer, MovieSecondaryContainer } from '../components';
 
 const HomePage = () => {
   return (
     <>
-      <MovieList />
+      <MoviePrimaryContainer />
+      <MovieSecondaryContainer />
     </>
   );
 };
