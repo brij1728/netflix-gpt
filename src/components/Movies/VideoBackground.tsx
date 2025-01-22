@@ -8,15 +8,14 @@ export const VideoBackground: React.FC<VideoBackgroundProps> = ({
   title,
 }) => {
   return (
-    <div className="video-background">
+    <div className="">
       <iframe
         width="560"
         height="315"
-        src={`https://www.youtube.com/embed/${trailerKey}`}
+        src={`https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&loop=1&playlist=${trailerKey}`}
         title={title}
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowFullScreen
-        className="h-full w-full rounded-lg"
+        className="aspect-video h-full w-full rounded-lg"
       ></iframe>
     </div>
   );

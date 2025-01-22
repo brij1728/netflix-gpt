@@ -1,36 +1,44 @@
 import { Loader } from '../ui';
-import { Movie } from '../../types/movies';
 import { MovieCard } from './MovieCard';
-import { VideoBackground } from './VideoBackground';
 import { useMovieVideos } from '../../hooks/useMovieVideos';
 import { useMovies } from '../../hooks/useMovies';
 
 export const MovieList: React.FC = () => {
-  const { movies, loading: moviesLoading, error: moviesError } = useMovies();
-  const {
-    movieVideos,
-    loading: videosLoading,
-    error: videosError,
-  } = useMovieVideos();
+  const { movies, loading, error } = useMovies();
 
-  if (moviesLoading || videosLoading) return <Loader />;
-  if (moviesError) return <div>{moviesError}</div>;
-  if (videosError) return <div>{videosError}</div>;
+  // Always call the useMovieVideos hook with a fallback
+  const featuredMovieId = movies?.[0]?.id || null;
+  const {
+    video,
+    loading: videoLoading,
+    error: videoError,
+  } = useMovieVideos(featuredMovieId);
+
+  // Handle loading and error states
+  if (loading || videoLoading) {
+    return <Loader />;
+  }
+
+  if (error || videoError) {
+    return <div>Error: {error || videoError}</div>;
+  }
+
+  // Exclude the featured movie from the grid
+  //const otherMovies = movies?.slice(1) || [];
 
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-      {movies?.map((movie: Movie) => {
-        const trailer = movieVideos[movie.id]; // Get the first trailer
+    <div>
+      {/* Featured Movie */}
+      {movies && movies[0] && video && (
+        <MovieCard {...movies[0]} video={video} />
+      )}
 
-        return (
-          <div key={movie.id}>
-            <MovieCard {...movie} />
-            {trailer && (
-              <VideoBackground trailerKey={trailer.key} title={movie.title} />
-            )}
-          </div>
-        );
-      })}
+      {/* Movie Grid */}
+      {/* <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {otherMovies.map((movie) => (
+          <MovieCard key={movie.id} {...movie} />
+        ))}
+      </div> */}
     </div>
   );
 };
