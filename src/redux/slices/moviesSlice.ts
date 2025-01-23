@@ -6,10 +6,12 @@ import { Video } from '../../types/video';
 interface MoviesState {
   nowPlayingMovies: Movie[] | null;
   movieVideos: Record<string, Video | null>;
+  popularMovies: Movie[] | null;
 }
 
 const initialState: MoviesState = {
   nowPlayingMovies: null,
+  popularMovies: null,
   movieVideos: {},
 };
 
@@ -20,6 +22,9 @@ const moviesSlice = createSlice({
     setNowPlayingMovies: (state, action: PayloadAction<Movie[]>) => {
       state.nowPlayingMovies = action.payload;
     },
+    setPopularMovies: (state, action: PayloadAction<Movie[]>) => {
+      state.popularMovies = action.payload;
+    },
     setMovieVideos: (
       state,
       action: PayloadAction<{ movieId: string; video: Video | null }>
@@ -29,5 +34,6 @@ const moviesSlice = createSlice({
   },
 });
 
-export const { setNowPlayingMovies, setMovieVideos } = moviesSlice.actions;
+export const { setNowPlayingMovies, setMovieVideos, setPopularMovies } =
+  moviesSlice.actions;
 export default moviesSlice.reducer;

@@ -3,9 +3,11 @@ import { ErrorUI, Loader } from '../ui';
 import { PrimaryMovieBanner } from './PrimaryMovieBanner';
 import { useMovieVideos } from '../../hooks/useMovieVideos';
 import { useMovies } from '../../hooks/useMovies';
+import { usePopularMovies } from '../../hooks/usePopularMovies';
 
 export const MoviePrimaryContainer = () => {
   const { movies, loading, error } = useMovies();
+  usePopularMovies();
 
   // Always call the useMovieVideos hook with a fallback
   const featuredMovieId = movies?.[0]?.id || null;

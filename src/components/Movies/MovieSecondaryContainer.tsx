@@ -10,7 +10,7 @@ export const MovieSecondaryContainer = () => {
       <div className="z-2 relative -mt-40">
         <MovieList title={'Now Playing'} movies={movies.nowPlayingMovies} />
         <MovieList title={'Trending'} movies={movies.nowPlayingMovies} />
-        <MovieList title={'Drama'} movies={movies.nowPlayingMovies} />
+        <MovieList title={'Drama'} movies={movies.popularMovies} />
         <MovieList title={'Comedy'} movies={movies.nowPlayingMovies} />
         <MovieList title={'Family'} movies={movies.nowPlayingMovies} />
         <MovieList title={'Popular'} movies={movies.nowPlayingMovies} />

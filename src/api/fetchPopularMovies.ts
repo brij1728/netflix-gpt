@@ -2,8 +2,8 @@ import { GET_API_OPTIONS } from './options';
 import { Movie } from '../types/movies';
 import { THE_MOVIE_DB_URL } from '../utils/constants';
 
-export const fetchNowPlayingMovies = async () => {
-  const url = `${THE_MOVIE_DB_URL}/now_playing?page=1`;
+export const fetchPopularMovies = async () => {
+  const url = `${THE_MOVIE_DB_URL}/popular?page=2`;
 
   const response = await fetch(url, GET_API_OPTIONS);
   if (!response.ok) {
@@ -11,6 +11,7 @@ export const fetchNowPlayingMovies = async () => {
   }
 
   const data = await response.json();
+  console.log(data);
 
   // Transform the data to include only the required fields
   return data.results.map((movie: Movie) => ({
