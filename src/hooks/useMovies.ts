@@ -1,36 +1,37 @@
-import { AppDispatch, RootState } from '../redux/store';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import {
+  setNowPlayingMovies,
+  setPopularMovies,
+  setTopRatedMovies,
+  setUpcomingMovies,
+} from '../redux/slices/moviesSlice';
 
-import { fetchNowPlayingMovies } from '../api/fetchMovies';
-import { setNowPlayingMovies } from '../redux/slices/moviesSlice';
+import { useFetchMovies } from './useFetchMovies';
 
-export const useMovies = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const movies = useSelector(
-    (state: RootState) => state.movies.nowPlayingMovies
-  );
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+export const useNowPlayingMovies = () => {
+  return useFetchMovies({
+    endpoint: 'now_playing',
+    reduxAction: setNowPlayingMovies,
+  });
+};
 
-  useEffect(() => {
-    const fetchMovies = async () => {
-      try {
-        setLoading(true);
-        const moviesData = await fetchNowPlayingMovies();
-        dispatch(setNowPlayingMovies(moviesData));
-        setLoading(false);
-      } catch (err: unknown) {
-        setError('Failed to fetch movies');
-        setLoading(false);
-        console.error('Failed to fetch movies:', err);
-      }
-    };
+export const usePopularMovies = () => {
+  return useFetchMovies({
+    endpoint: 'popular',
+    reduxAction: setPopularMovies,
+    page: 2,
+  });
+};
 
-    if (!movies) {
-      fetchMovies();
-    }
-  }, [movies, dispatch]);
+export const useTopRatedMovies = () => {
+  return useFetchMovies({
+    endpoint: 'top_rated',
+    reduxAction: setTopRatedMovies,
+  });
+};
 
-  return { movies, loading, error };
+export const useUpcomingMovies = () => {
+  return useFetchMovies({
+    endpoint: 'upcoming',
+    reduxAction: setUpcomingMovies,
+  });
 };

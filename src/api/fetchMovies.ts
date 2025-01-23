@@ -2,10 +2,19 @@ import { GET_API_OPTIONS } from './options';
 import { Movie } from '../types/movies';
 import { THE_MOVIE_DB_URL } from '../utils/constants';
 
-export const fetchNowPlayingMovies = async () => {
-  const url = `${THE_MOVIE_DB_URL}/now_playing?page=1`;
+interface FetchMoviesOptions {
+  endpoint: string;
+  page?: number;
+}
+
+export const fetchMovies = async ({
+  endpoint,
+  page = 1,
+}: FetchMoviesOptions): Promise<Movie[]> => {
+  const url = `${THE_MOVIE_DB_URL}/${endpoint}?page=${page}`;
 
   const response = await fetch(url, GET_API_OPTIONS);
+
   if (!response.ok) {
     throw new Error(`Failed to fetch movies: ${response.statusText}`);
   }

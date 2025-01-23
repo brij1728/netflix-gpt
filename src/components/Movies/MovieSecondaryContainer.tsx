@@ -9,11 +9,10 @@ export const MovieSecondaryContainer = () => {
     <div>
       <div className="z-2 relative -mt-40">
         <MovieList title={'Now Playing'} movies={movies.nowPlayingMovies} />
-        <MovieList title={'Trending'} movies={movies.nowPlayingMovies} />
-        <MovieList title={'Drama'} movies={movies.popularMovies} />
-        <MovieList title={'Comedy'} movies={movies.nowPlayingMovies} />
-        <MovieList title={'Family'} movies={movies.nowPlayingMovies} />
-        <MovieList title={'Popular'} movies={movies.nowPlayingMovies} />
+
+        <MovieList title={'Trending'} movies={movies.popularMovies} />
+        <MovieList title={'Top Rated'} movies={movies.topRatedMovies} />
+        <MovieList title={'Upcoming'} movies={movies.upcomingMovies} />
       </div>
     </div>
   );
