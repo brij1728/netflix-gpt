@@ -1,11 +1,36 @@
-import { API_OPTIONS } from '../utils/constants';
+import { GET_API_OPTIONS } from './options';
+import { Movie } from '../types/movies';
+import { THE_MOVIE_DB_URL } from '../utils/constants';
 
-export const getCurrentPlayingMovies = async () => {
-  const url =
-    'https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1';
+interface FetchMoviesOptions {
+  endpoint: string;
+  page?: number;
+}
 
-  const response = await fetch(url, API_OPTIONS);
+export const fetchMovies = async ({
+  endpoint,
+  page = 1,
+}: FetchMoviesOptions): Promise<Movie[]> => {
+  const url = `${THE_MOVIE_DB_URL}/${endpoint}?page=${page}`;
+
+  const response = await fetch(url, GET_API_OPTIONS);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch movies: ${response.statusText}`);
+  }
+
   const data = await response.json();
-  console.log(data);
-  return data;
+
+  // Transform the data to include only the required fields
+  return data.results.map((movie: Movie) => ({
+    id: movie.id,
+    title: movie.title,
+    overview: movie.overview,
+    poster_path: movie.poster_path,
+    release_date: movie.release_date,
+    vote_average: movie.vote_average,
+    vote_count: movie.vote_count,
+    genre_ids: movie.genre_ids,
+    original_language: movie.original_language,
+  }));
 };

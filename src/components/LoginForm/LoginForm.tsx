@@ -1,6 +1,7 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useRef, useState } from 'react';
 
+import { AppDispatch } from '../../redux/store';
 import { loginFormValidation } from '../../utils/loginFormValidation';
 import { setCurrentUser } from '../../redux/slices/userSlice';
 import { useDispatch } from 'react-redux';
@@ -15,7 +16,7 @@ export const LoginForm = () => {
   const password = useRef<HTMLInputElement>(null);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const {
     loading,
     error,

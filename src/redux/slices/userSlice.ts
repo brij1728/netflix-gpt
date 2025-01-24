@@ -3,8 +3,8 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { User } from '../../types/user';
 
 interface UserState {
-  users: User[]; // List of all users
-  currentUser: User | null; // Currently logged-in user
+  users: User[];
+  currentUser: User | null;
 }
 
 // Initial state
@@ -18,13 +18,13 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload; // Replace the user list
+      state.users = action.payload;
     },
     addUser: (state, action: PayloadAction<User>) => {
-      state.users.push(action.payload); // Add a new user to the list
+      state.users.push(action.payload);
     },
     setCurrentUser: (state, action: PayloadAction<User>) => {
-      state.currentUser = action.payload; // Set the current logged-in user
+      state.currentUser = action.payload;
     },
     removeUser: (state, action: PayloadAction<string | undefined>) => {
       if (action.payload) {

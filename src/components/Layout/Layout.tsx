@@ -15,8 +15,13 @@ export const Layout = () => {
   // Determine if navigation is ongoing
   const isLoading = navigation.state === 'loading';
 
+  // Check if it's the HomePage
+  const isHomePage = location.pathname === '/';
+
   return (
-    <div className="flex min-h-screen flex-col">
+    <div
+      className={`flex min-h-screen flex-col ${isHomePage ? 'bg-netflix-black' : ''}`}
+    >
       {/* Header: Always visible */}
       <header className="fixed left-0 top-0 z-10 h-12 w-full bg-black sm:h-16 md:h-20">
         <div className="mx-auto flex h-full w-full max-w-screen-xl items-center">
@@ -38,8 +43,12 @@ export const Layout = () => {
             <Outlet />
           </AuthLayout>
         ) : (
-          // Render default layout content for all other pages
-          <div className="mx-auto w-full max-w-screen-xl p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28">
+          // Conditional styling for HomePage vs other pages
+          <div
+            className={`mx-auto w-full max-w-screen-xl ${
+              isHomePage ? '' : 'p-4 pt-16 sm:pt-20 md:pt-24 lg:pt-28'
+            }`}
+          >
             <Outlet />
           </div>
         )}
