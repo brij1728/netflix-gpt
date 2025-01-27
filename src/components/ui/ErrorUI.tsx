@@ -1,14 +1,24 @@
+import { useNavigate } from 'react-router-dom'; // Assuming React Router is used for navigation
+
 interface ErrorUIProps {
   title?: string | null; // Optional title
   errorMessage?: string | null; // Optional error message
   onRetry?: () => void; // Optional retry handler
+  redirectToLogin?: boolean; // Optional flag to show login button
 }
 
 export const ErrorUI: React.FC<ErrorUIProps> = ({
   title = 'An Error Occurred', // Default title
   errorMessage = 'Something went wrong!', // Default error message
   onRetry,
+  redirectToLogin = false, // Default to not show login button
 }) => {
+  const navigate = useNavigate(); // Navigation hook from React Router
+
+  const handleLoginRedirect = () => {
+    navigate('/login'); // Adjust path to your login route
+  };
+
   return (
     <div className="fixed left-0 top-0 z-50 flex h-full w-full items-center justify-center bg-gray-800 bg-opacity-70">
       <div className="bg-white flex max-w-md flex-col items-center justify-center rounded-lg p-6 shadow-lg">
@@ -40,9 +50,19 @@ export const ErrorUI: React.FC<ErrorUIProps> = ({
         {onRetry && (
           <button
             onClick={onRetry}
-            className="text-white rounded bg-red-500 px-4 py-2 hover:bg-red-600"
+            className="text-white mb-2 rounded bg-red-500 px-4 py-2 hover:bg-red-600"
           >
             Retry
+          </button>
+        )}
+
+        {/* Login Button */}
+        {redirectToLogin && (
+          <button
+            onClick={handleLoginRedirect}
+            className="text-white rounded bg-blue-500 px-4 py-2 hover:bg-blue-600"
+          >
+            Go to Login
           </button>
         )}
       </div>

@@ -30,7 +30,9 @@ export const MoviePrimaryContainer = () => {
   }
 
   if (error || videoError) {
-    return <ErrorUI errorMessage={error || videoError} />;
+    return (
+      <ErrorUI errorMessage={error || videoError} redirectToLogin={true} />
+    );
   }
 
   return (

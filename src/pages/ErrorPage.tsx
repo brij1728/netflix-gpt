@@ -3,7 +3,7 @@ import { ErrorUI } from '../components/ui';
 const ErrorPage = () => {
   return (
     <>
-      <ErrorUI />
+      <ErrorUI redirectToLogin={true} />
     </>
   );
 };
