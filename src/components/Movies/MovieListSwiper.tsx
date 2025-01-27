@@ -26,12 +26,18 @@ export const MovieListSwiper: React.FC<MovieListSwiperProps> = ({
       <Carousel
         items={movies}
         renderItem={(movie) => <MovieCard {...movie} />}
-        slidesPerView={3}
+        slidesPerView={2}
         spaceBetween={15}
         breakpoints={{
-          640: { slidesPerView: 2, spaceBetween: 10 },
-          768: { slidesPerView: 3, spaceBetween: 15 },
-          1024: { slidesPerView: 5, spaceBetween: 20 },
+          320: { slidesPerView: 3, spaceBetween: 1 },
+          400: { slidesPerView: 4, spaceBetween: 1 },
+          520: { slidesPerView: 5, spaceBetween: 1 },
+          640: { slidesPerView: 5, spaceBetween: 1 },
+          768: { slidesPerView: 5, spaceBetween: 2 },
+          900: { slidesPerView: 6, spaceBetween: 3 },
+
+          1024: { slidesPerView: 5, spaceBetween: 4 },
+          1280: { slidesPerView: 5, spaceBetween: 8 },
         }}
         pagination={false}
       />
