@@ -7,7 +7,7 @@ export const MovieSecondaryContainer = () => {
 
   return (
     <div>
-      <div className="z-2 relative -mt-40">
+      <div className="z-2 relative -mt-14 sm:-mt-28 md:-mt-32 lg:-mt-40 xl:-mt-40">
         <MovieListSwiper
           title={'Now Playing'}
           movies={movies.nowPlayingMovies}

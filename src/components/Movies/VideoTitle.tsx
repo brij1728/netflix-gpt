@@ -16,12 +16,14 @@ export const VideoTitle: React.FC<Movie> = ({ ...movie }) => {
     <>
       <div
         id={movie.id}
-        className="absolute flex aspect-video w-[60%] flex-col items-start rounded-lg p-2 px-12 pt-24 text-white-100 md:w-1/2 md:p-4 md:pt-48 xl:pt-72"
+        className="absolute flex aspect-video w-[60%] flex-col items-start rounded-lg pl-2 pt-24 text-white-100 md:w-1/2 md:pt-40 lg:pt-60 xl:pt-72"
       >
-        <h2 className="mt-2 text-xl font-bold md:text-3xl">{movie.title}</h2>
+        <h2 className="mt-2 text-base font-bold md:text-xl xl:text-3xl">
+          {movie.title}
+        </h2>
 
         {/* Truncated Overview */}
-        <p className="line-clamp-3 overflow-hidden text-sm transition-all md:text-lg">
+        <p className="line-clamp-3 overflow-hidden text-[12px] transition-all sm:text-sm md:text-base lg:text-lg">
           {movie.overview || 'Overview not available.'}
         </p>
 
