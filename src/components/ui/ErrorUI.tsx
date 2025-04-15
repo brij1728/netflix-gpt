@@ -1,22 +1,20 @@
-import { useNavigate } from 'react-router-dom'; // Assuming React Router is used for navigation
-
+import { useNavigate } from 'react-router-dom';
 interface ErrorUIProps {
-  title?: string | null; // Optional title
-  errorMessage?: string | null; // Optional error message
-  onRetry?: () => void; // Optional retry handler
-  redirectToLogin?: boolean; // Optional flag to show login button
+  title?: string | null;
+  errorMessage?: string | null;
+  onRetry?: () => void;
+  redirectToLogin?: boolean;
 }
 
 export const ErrorUI: React.FC<ErrorUIProps> = ({
-  title = 'An Error Occurred', // Default title
-  errorMessage = 'Something went wrong!', // Default error message
+  title = 'An Error Occurred',
+  errorMessage = 'Something went wrong!',
   onRetry,
-  redirectToLogin = false, // Default to not show login button
+  redirectToLogin = false,
 }) => {
-  const navigate = useNavigate(); // Navigation hook from React Router
-
+  const navigate = useNavigate();
   const handleLoginRedirect = () => {
-    navigate('/login'); // Adjust path to your login route
+    navigate('/login');
   };
 
   return (

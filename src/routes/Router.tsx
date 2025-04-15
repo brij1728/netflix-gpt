@@ -1,6 +1,7 @@
 import {
   ErrorPage,
   FAQPage,
+  GPTSearchPage,
   HelpPage,
   HomePage,
   LinkSignInPage,
@@ -89,6 +90,14 @@ export const router = createBrowserRouter([
         element: (
           <Suspense fallback={<Loader />}>
             <ErrorPage />
+          </Suspense>
+        ),
+      },
+      {
+        path: '/gptsearch',
+        element: (
+          <Suspense fallback={<Loader />}>
+            <GPTSearchPage />
           </Suspense>
         ),
       },

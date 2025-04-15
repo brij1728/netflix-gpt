@@ -10,3 +10,4 @@ export const HelpPage = lazy(() => import('../pages/HelpPage'));
 export const FAQPage = lazy(() => import('../pages/FAQPage'));
 export const ErrorPage = lazy(() => import('../pages/ErrorPage'));
 export const LinkSignInPage = lazy(() => import('../pages/LinkSignInPage'));
+export const GPTSearchPage = lazy(() => import('../pages/GPTSearchPage'));
