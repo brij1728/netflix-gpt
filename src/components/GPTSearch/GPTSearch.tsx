@@ -1,7 +1,9 @@
+import { Search } from '../ui/Search';
+
 export const GPTSearch = () => {
   return (
     <>
-      <h3>GPT Search</h3>
+      <Search />
     </>
   );
 };

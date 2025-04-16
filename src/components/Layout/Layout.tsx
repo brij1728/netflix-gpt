@@ -9,7 +9,7 @@ export const Layout = () => {
   const location = useLocation();
   const navigation = useNavigation();
 
-  const authPaths = ['/login', '/signup', '/link-signin'];
+  const authPaths = ['/login', '/signup', '/link-signin', '/gptsearch'];
   const isAuthPage = authPaths.includes(location.pathname);
 
   // Determine if navigation is ongoing
@@ -17,6 +17,9 @@ export const Layout = () => {
 
   // Check if it's the HomePage
   const isHomePage = location.pathname === '/';
+
+  // Check if it's th GPTSearch Page
+  const isGPTSearchPage = location.pathname === '/gptsearch';
 
   return (
     <div
@@ -37,7 +40,7 @@ export const Layout = () => {
           </div>
         )}
 
-        {isAuthPage ? (
+        {isAuthPage || isGPTSearchPage ? (
           // Render AuthLayout for specific auth pages
           <AuthLayout title={getAuthTitle(location.pathname)}>
             <Outlet />
@@ -65,7 +68,7 @@ export const Layout = () => {
 };
 
 // Helper function to get dynamic titles for AuthLayout
-const getAuthTitle = (path: string): string => {
+const getAuthTitle = (path: string): string | null => {
   switch (path) {
     case '/login':
       return 'Sign In';
@@ -73,6 +76,8 @@ const getAuthTitle = (path: string): string => {
       return 'Sign Up';
     case '/link-signin':
       return 'Complete Sign-In';
+    case '/gptsearch':
+      return null; // no title for gptsearch
     default:
       return 'Authentication';
   }
