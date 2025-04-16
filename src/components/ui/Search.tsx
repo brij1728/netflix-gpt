@@ -1,4 +1,5 @@
 import { Button } from './Button';
+import { languageConstants } from '../../utils/languageConstants';
 
 export const Search = () => {
   return (
@@ -7,10 +8,10 @@ export const Search = () => {
         <input
           type="text"
           className="w-full rounded-md border border-netflix-red p-2 focus:outline-none focus:ring focus:ring-red-400"
-          placeholder="What you like to watch today?"
+          placeholder={languageConstants.hindi.gptSearchPlaceholder}
         />
         <Button className="bg-netflix-red px-1 py-[2px] text-white-100 hover:bg-red-700 sm:px-2 sm:py-1 sm:text-sm md:px-4 md:py-2 md:text-base lg:text-xl">
-          Search
+          {languageConstants.hindi.search}
         </Button>
       </form>
     </div>
