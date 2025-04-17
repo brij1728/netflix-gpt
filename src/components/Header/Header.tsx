@@ -1,5 +1,5 @@
 import { AppDispatch, RootState } from '../../redux/store';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '../ui';
@@ -7,9 +7,10 @@ import { IoLanguage } from 'react-icons/io5';
 import { LanguageCode } from '../../types/lang';
 import { auth } from '../../utils/firebase-config';
 import { changeLanguage } from '../../redux/slices/configSlice';
+import { setGPTSearchView } from '../../redux/slices/gptSlice';
 import { signOut } from 'firebase/auth';
 import { supportedLanguages } from '../../utils/languageConstants';
-import { toggleGPTSearchView } from '../../redux/slices/gptSlice';
+import { useEffect } from 'react';
 
 export const Header = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -18,8 +19,10 @@ export const Header = () => {
   const showGPTSearch = useSelector(
     (store: RootState) => store.gpt.showGPTSearch
   );
+  const currentLanguage = useSelector((store: RootState) => store.config.lang);
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignOut = async () => {
     try {
@@ -34,16 +37,21 @@ export const Header = () => {
   };
 
   const handleSearch = () => {
-    console.log('Hi, I am brijesh');
-    dispatch(toggleGPTSearchView());
-    navigate('/gptsearch');
+    navigate(showGPTSearch ? '/' : '/gptsearch');
   };
 
   const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const selectedlang = e.target.value as LanguageCode;
-    console.log(`Change Language ${selectedlang}`);
     dispatch(changeLanguage(selectedlang));
   };
+
+  useEffect(() => {
+    if (location.pathname === '/gptsearch') {
+      dispatch(setGPTSearchView(true));
+    } else {
+      dispatch(setGPTSearchView(false));
+    }
+  }, [location.pathname, dispatch]);
 
   return (
     <div className="flex w-full items-center justify-between px-4">
@@ -65,6 +73,7 @@ export const Header = () => {
                 <div className="relative flex items-center justify-between gap-2">
                   <IoLanguage className="pointer-events-none absolute left-[1px] top-1/2 mx-[2px] -translate-y-1/2 text-white-100 sm:text-xs md:mx-1 md:text-sm lg:mx-2 lg:text-base" />
                   <select
+                    value={currentLanguage}
                     className="appearance-none rounded-md bg-netflix-red px-3 py-[1px] text-[10px] text-white-100 sm:px-4 sm:text-xs md:px-6 md:py-1 md:text-sm lg:px-8 lg:text-base"
                     onChange={handleLanguageChange}
                   >

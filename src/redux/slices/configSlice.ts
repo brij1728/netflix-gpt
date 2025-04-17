@@ -6,7 +6,7 @@ interface LangState {
   lang: LanguageCode;
 }
 const initialState: LangState = {
-  lang: 'en',
+  lang: (localStorage.getItem('lang') as LanguageCode) || 'en',
 };
 const configSlice = createSlice({
   name: 'config',
@@ -14,6 +14,7 @@ const configSlice = createSlice({
   reducers: {
     changeLanguage: (state, action: PayloadAction<LanguageCode>) => {
       state.lang = action.payload;
+      localStorage.setItem('lang', action.payload);
     },
   },
 });

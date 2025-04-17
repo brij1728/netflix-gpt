@@ -7,7 +7,6 @@ export const Search = () => {
   const currentLanguageKey = useSelector(
     (store: RootState) => store.config.lang
   );
-  console.log(currentLanguageKey);
 
   return (
     <div className="mx-auto w-[60%] bg-netflix-black p-2">

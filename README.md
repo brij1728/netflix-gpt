@@ -1,4 +1,3 @@
-
 # Netflix GPT
 
 A React-based web application that uses GPT technology to provide enhanced features related to Netflix content. This project is built using Vite, TypeScript, Tailwind CSS, and is deployed on Vercel.
@@ -15,17 +14,17 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
 - **Deployment**: Vercel
 - **Git Hooks**: Husky, lint-staged
 
-
-
 ## Features
 
 - Login/Sign Up
-   - Sign In / Sign Up Form
-   - redirect to Home Page
-   - Login form
-   - Create Redux Store with userSlice
+
+  - Sign In / Sign Up Form
+  - redirect to Home Page
+  - Login form
+  - Create Redux Store with userSlice
 
 - Browser (After authentication) (Working on this part)
+
   - Header
   - Main Movie
     - Tailer in Background
@@ -35,10 +34,9 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
   - Use Layout to render children
 
 - Netflix GPt (have not implemented)
-   - Search Bar
-   - Movie Suggestions
-
-    
+  - Search Bar
+  - Movie Suggestions
+  - Multilingual support
 
 ### Prerequisites
 
@@ -155,10 +153,7 @@ public/
 ├─ index.html           # HTML entry file
 ```
 
-
 ## Links
 
 - **GitHub Repository**: [https://github.com/brij1728/netflix-gpt](https://github.com/brij1728/netflix-gpt)
 - **Live Demo**: [https://netflixgpt-olive-ten.vercel.app/](https://netflixgpt-olive-ten.vercel.app/)
-
-
