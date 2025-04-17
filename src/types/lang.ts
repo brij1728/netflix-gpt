@@ -4,3 +4,9 @@ export interface Lang {
 }
 
 export type LanguageCode = 'en' | 'hindi' | 'spanish';
+export type LanguageName = 'English' | 'Hindi' | 'Spanish';
+
+export type SupportedLanguages = {
+  identifier: LanguageCode;
+  languageName: LanguageName;
+};

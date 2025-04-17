@@ -1,4 +1,4 @@
-import { Lang, LanguageCode } from '../types/lang';
+import { Lang, LanguageCode, SupportedLanguages } from '../types/lang';
 
 export const languageConstants: Record<LanguageCode, Lang> = {
   en: {
@@ -11,6 +11,21 @@ export const languageConstants: Record<LanguageCode, Lang> = {
   },
   spanish: {
     search: 'buscar',
-    gptSearchPlaceholder: '¿Qué te gustaría ver hoy??',
+    gptSearchPlaceholder: '¿Qué te gustaría ver hoy?',
   },
 };
+
+export const supportedLanguages: SupportedLanguages[] = [
+  {
+    identifier: 'en',
+    languageName: 'English',
+  },
+  {
+    identifier: 'hindi',
+    languageName: 'Hindi',
+  },
+  {
+    identifier: 'spanish',
+    languageName: 'Spanish',
+  },
+];
