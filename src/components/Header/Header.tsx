@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from '../ui';
 import { IoLanguage } from 'react-icons/io5';
+import { LanguageCode } from '../../types/lang';
 import { auth } from '../../utils/firebase-config';
+import { changeLanguage } from '../../redux/slices/configSlice';
 import { signOut } from 'firebase/auth';
 import { supportedLanguages } from '../../utils/languageConstants';
 import { toggleGPTSearchView } from '../../redux/slices/gptSlice';
@@ -33,6 +35,12 @@ export const Header = () => {
     navigate('/gptsearch');
   };
 
+  const handleLanguageChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedlang = e.target.value as LanguageCode;
+    console.log(`Change Language ${selectedlang}`);
+    dispatch(changeLanguage(selectedlang));
+  };
+
   return (
     <div className="flex w-full items-center justify-between px-4">
       <div>
@@ -51,7 +59,10 @@ export const Header = () => {
             <div className="flex items-center space-x-2">
               <div className="relative flex items-center justify-between gap-2">
                 <IoLanguage className="pointer-events-none absolute left-[1px] top-1/2 mx-[2px] -translate-y-1/2 text-white-100 sm:text-xs md:mx-1 md:text-sm lg:mx-2 lg:text-base" />
-                <select className="appearance-none rounded-md bg-netflix-red px-3 py-[1px] text-[10px] text-white-100 sm:px-4 sm:text-xs md:px-6 md:py-1 md:text-sm lg:px-8 lg:text-base">
+                <select
+                  className="appearance-none rounded-md bg-netflix-red px-3 py-[1px] text-[10px] text-white-100 sm:px-4 sm:text-xs md:px-6 md:py-1 md:text-sm lg:px-8 lg:text-base"
+                  onChange={handleLanguageChange}
+                >
                   {supportedLanguages.map((lang) => (
                     <option
                       className="bg-white-100 text-netflix-black"

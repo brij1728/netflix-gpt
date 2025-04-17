@@ -8,6 +8,7 @@ import {
 } from 'redux-persist';
 import { persistReducer, persistStore } from 'redux-persist';
 
+import configReducer from './slices/configSlice';
 import { configureStore } from '@reduxjs/toolkit';
 import gptReducer from './slices/gptSlice';
 import moviesReducer from './slices/moviesSlice';
@@ -27,6 +28,7 @@ export const appStore = configureStore({
     user: persistedReducer,
     movies: moviesReducer,
     gpt: gptReducer,
+    config: configReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
