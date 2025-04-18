@@ -27,9 +27,10 @@ export const Search = () => {
       //Make API call using OpenAI
       const gptResults = await client.chat.completions.create({
         model: 'gpt-3.5-turbo',
-        messages: [{ role: 'user', content: `${gptQuery}` }],
+        messages: [{ role: 'user', content: gptQuery }],
       });
-      console.log(`GPT Results ${gptResults}`);
+      const movieList = gptResults.choices?.[0]?.message?.content;
+      console.log(`GPT Movie Suggestions for ${queryText}:, ${movieList}`);
 
       searchText.current!.value = '';
     } else {
