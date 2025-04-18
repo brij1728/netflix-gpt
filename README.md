@@ -37,6 +37,7 @@ Netflix GPT aims to enhance the user's experience by integrating GPT-based funct
   - Search Bar
   - Movie Suggestions
   - Multilingual support
+  - Integrate GPT API
 
 ### Prerequisites
 

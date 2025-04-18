@@ -6,12 +6,14 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: 'text' | 'outlined' | 'contained'; // Variants
   color?: 'primary' | 'secondary'; // Colors
+  type?: 'button' | 'submit' | 'reset';
 }
 
 export const Button: React.FC<ButtonProps> = ({
   children,
   onClick,
   className = '',
+  type,
   //variant = 'contained', // Default variant
   //color = 'primary', // Default color
 }) => {
@@ -32,7 +34,7 @@ export const Button: React.FC<ButtonProps> = ({
   const combinedStyles = `font-poppins rounded-md px-4 py-2 text-[15px] font-medium capitalize ${className}`;
 
   return (
-    <button onClick={onClick} className={combinedStyles}>
+    <button onClick={onClick} className={combinedStyles} type={type}>
       {children}
     </button>
   );
