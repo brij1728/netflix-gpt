@@ -11,7 +11,7 @@ export const fetchMovies = async ({
   endpoint,
   page = 1,
 }: FetchMoviesOptions): Promise<Movie[]> => {
-  const url = `${THE_MOVIE_DB_URL}/${endpoint}?page=${page}`;
+  const url = `${THE_MOVIE_DB_URL}/movie/${endpoint}?page=${page}`;
 
   const response = await fetch(url, GET_API_OPTIONS);
 

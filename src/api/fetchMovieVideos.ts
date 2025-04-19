@@ -5,7 +5,7 @@ import { Video } from '../types/video';
 export const fetchMovieVideos = async (
   movieId: string
 ): Promise<Video | null> => {
-  const url = `${THE_MOVIE_DB_URL}/${movieId}/videos`;
+  const url = `${THE_MOVIE_DB_URL}/movie/${movieId}/videos`;
 
   try {
     const response = await fetch(url, GET_API_OPTIONS);
