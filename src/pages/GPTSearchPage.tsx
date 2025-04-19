@@ -1,9 +1,10 @@
-import { GPTSearch } from '../components';
+import { GPTMovieSearch, GPTMovieSuggestions } from '../components';
 
 const GPTSearchPage = () => {
   return (
     <>
-      <GPTSearch />
+      <GPTMovieSearch />
+      <GPTMovieSuggestions />
     </>
   );
 };

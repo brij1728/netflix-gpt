@@ -10,7 +10,7 @@ interface SearchMoviesProps {
 export const fetchSearchMovie = async ({
   movieName,
   page = 1,
-}: SearchMoviesProps): Promise<Movie> => {
+}: SearchMoviesProps): Promise<Movie[]> => {
   const url = `${THE_MOVIE_DB_URL}/search/movie?query=${movieName}&page=${page}`;
   const response = await fetch(url, GET_API_OPTIONS);
 

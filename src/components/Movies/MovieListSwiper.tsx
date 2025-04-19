@@ -3,7 +3,7 @@ import { Movie } from '../../types/movies';
 import { MovieCard } from './MovieCard';
 
 interface MovieListSwiperProps {
-  title: string;
+  title?: string;
   movies: Movie[] | null;
 }
 
@@ -15,6 +15,9 @@ export const MovieListSwiper: React.FC<MovieListSwiperProps> = ({
     return null;
   }
 
+  //Filter out movies with no poster_path
+  const moviesWithPosters = movies.filter((movie) => !!movie.poster_path);
+
   return (
     <div className="flex flex-col gap-1 pb-2 sm:gap-2 sm:pb-3 md:pb-4">
       {/* Section Title */}
@@ -24,7 +27,7 @@ export const MovieListSwiper: React.FC<MovieListSwiperProps> = ({
 
       {/* Carousel Component */}
       <Carousel
-        items={movies}
+        items={moviesWithPosters}
         renderItem={(movie) => <MovieCard {...movie} />}
         slidesPerView={2}
         spaceBetween={15}

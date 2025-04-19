@@ -1,5 +1,3 @@
-// hooks/useSearchMovies.ts
-
 import { AppDispatch } from '../redux/store';
 import { Movie } from '../types/movies';
 import { addGPTMovieResults } from '../redux/slices/gptSlice';
@@ -42,20 +40,17 @@ export const useSearchMovies = () => {
         .filter((movie) => movie !== '');
 
       const uniqueMovieArray = [...new Set(movieArray)];
-      console.log('Unique movie list:', uniqueMovieArray);
 
       const moviePromises = uniqueMovieArray.map((movie: string) =>
         fetchSearchMovie({ movieName: movie })
       );
 
-      const tmdbMoviesNested = await Promise.all(moviePromises);
-      const tmdbMovies: Movie[] = tmdbMoviesNested.flat();
-      console.log('All TMDB movie results:', tmdbMovies);
+      const tmdbMoviesNested: Movie[][] = await Promise.all(moviePromises);
 
       dispatch(
         addGPTMovieResults({
           movieNames: uniqueMovieArray,
-          movieResults: tmdbMovies,
+          movieResults: tmdbMoviesNested,
         })
       );
     } catch (error) {

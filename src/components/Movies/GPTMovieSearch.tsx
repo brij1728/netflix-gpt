@@ -4,8 +4,9 @@ import { languageConstants } from '../../utils/languageConstants';
 import { useSearchMovies } from '../../hooks/useSearchMovies';
 import { useSelector } from 'react-redux';
 
-export const GPTSearch = () => {
+export const GPTMovieSearch = () => {
   const { searchMoviesFromQuery } = useSearchMovies();
+
   const currentLanguageKey = useSelector(
     (store: RootState) => store.config.lang
   );
@@ -15,12 +16,16 @@ export const GPTSearch = () => {
   };
 
   return (
-    <div className="mx-auto w-full bg-netflix-black p-2 md:w-[60%]">
-      <SearchBar
-        placeholder={languageConstants[currentLanguageKey].gptSearchPlaceholder}
-        onSearch={handleSearch}
-        searchButtonText={languageConstants[currentLanguageKey].search}
-      />
-    </div>
+    <>
+      <div className="mx-auto w-full bg-netflix-black p-2 md:w-[60%]">
+        <SearchBar
+          placeholder={
+            languageConstants[currentLanguageKey].gptSearchPlaceholder
+          }
+          onSearch={handleSearch}
+          searchButtonText={languageConstants[currentLanguageKey].search}
+        />
+      </div>
+    </>
   );
 };

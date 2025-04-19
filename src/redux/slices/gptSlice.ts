@@ -5,11 +5,11 @@ import { Movie } from '../../types/movies';
 interface GPTState {
   showGPTSearch: boolean;
   movieNames: string[];
-  movieResults: Movie[];
+  movieResults: Movie[][];
 }
 interface GPTMoviePayload {
   movieNames: string[];
-  movieResults: Movie[];
+  movieResults: Movie[][];
 }
 const initialState: GPTState = {
   showGPTSearch: false,
