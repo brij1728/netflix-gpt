@@ -1,14 +1,16 @@
+import { AppDispatch, RootState } from '../../redux/store';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useRef } from 'react';
 
 import { Button } from './Button';
 import { Movie } from '../../types/movies';
-import { RootState } from '../../redux/store';
+import { addGPTMovieResults } from '../../redux/slices/gptSlice';
 import { client } from '../../api/openai';
 import { fetchSearchMovie } from '../../api/searchMovies';
 import { languageConstants } from '../../utils/languageConstants';
-import { useSelector } from 'react-redux';
 
 export const Search = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const currentLanguageKey = useSelector(
     (store: RootState) => store.config.lang
   );
@@ -54,6 +56,12 @@ export const Search = () => {
       const tmdbMoviesNested = await Promise.all(moviePromises);
       const tmdbMovies: Movie[] = tmdbMoviesNested.flat();
       console.log('All TMDB movie results:', tmdbMovies);
+      dispatch(
+        addGPTMovieResults({
+          movieNames: uniqueMovieArray,
+          movieResults: tmdbMovies,
+        })
+      );
     } catch (error) {
       console.error('Error while calling GPT or TMDB API:', error);
     } finally {
