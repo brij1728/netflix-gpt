@@ -15,7 +15,7 @@ export const GPTSearch = () => {
   };
 
   return (
-    <div className="mx-auto w-[60%] bg-netflix-black p-2">
+    <div className="mx-auto w-full bg-netflix-black p-2 md:w-[60%]">
       <SearchBar
         placeholder={languageConstants[currentLanguageKey].gptSearchPlaceholder}
         onSearch={handleSearch}
