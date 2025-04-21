@@ -15,9 +15,7 @@ export const GPTMovieSuggestions = () => {
         const relatedMovies: Movie[] = movieResults[index];
 
         return (
-          <div className="">
-            <MovieListSwiper movies={relatedMovies} title={movie} key={movie} />
-          </div>
+          <MovieListSwiper movies={relatedMovies} title={movie} key={movie} />
         );
       })}
     </>

@@ -17,7 +17,7 @@ export const GPTMovieSearch = () => {
 
   return (
     <>
-      <div className="mx-auto w-full bg-netflix-black p-2 md:w-[60%]">
+      <div className="mx-auto w-full bg-netflix-black p-2">
         <SearchBar
           placeholder={
             languageConstants[currentLanguageKey].gptSearchPlaceholder
