@@ -6,6 +6,9 @@ interface GPTState {
   showGPTSearch: boolean;
   movieNames: string[];
   movieResults: Movie[][];
+  hasSearched: boolean;
+  isLoading: boolean;
+  lastQuery: string;
 }
 interface GPTMoviePayload {
   movieNames: string[];
@@ -15,6 +18,9 @@ const initialState: GPTState = {
   showGPTSearch: false,
   movieNames: [],
   movieResults: [],
+  hasSearched: false,
+  isLoading: false,
+  lastQuery: '',
 };
 const gptSlice = createSlice({
   name: 'search',
@@ -30,10 +36,31 @@ const gptSlice = createSlice({
       const { movieNames, movieResults } = action.payload;
       state.movieNames = movieNames;
       state.movieResults = movieResults;
+      state.hasSearched = true;
+      state.isLoading = false;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
+    },
+    setLastQuery: (state, action: PayloadAction<string>) => {
+      state.lastQuery = action.payload;
+    },
+    resetGPTSearch: (state) => {
+      state.movieNames = [];
+      state.movieResults = [];
+      state.hasSearched = false;
+      state.isLoading = false;
+      state.lastQuery = '';
     },
   },
 });
 
-export const { toggleGPTSearchView, setGPTSearchView, addGPTMovieResults } =
-  gptSlice.actions;
+export const {
+  toggleGPTSearchView,
+  setGPTSearchView,
+  addGPTMovieResults,
+  setLoading,
+  setLastQuery,
+  resetGPTSearch,
+} = gptSlice.actions;
 export default gptSlice.reducer;

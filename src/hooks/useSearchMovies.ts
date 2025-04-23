@@ -1,6 +1,12 @@
+import {
+  addGPTMovieResults,
+  resetGPTSearch,
+  setLastQuery,
+  setLoading,
+} from '../redux/slices/gptSlice';
+
 import { AppDispatch } from '../redux/store';
 import { Movie } from '../types/movies';
-import { addGPTMovieResults } from '../redux/slices/gptSlice';
 import { client } from '../api/openai';
 import { fetchSearchMovie } from '../api/searchMovies';
 import { useDispatch } from 'react-redux';
@@ -13,12 +19,19 @@ export const useSearchMovies = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const searchMoviesFromQuery = async ({ queryText }: SearchQuery) => {
-    if (!queryText.trim()) {
+    const trimmedQuery = queryText.trim();
+
+    if (!trimmedQuery) {
       console.warn('Search input is empty');
       return;
     }
 
-    console.log(`Searching for: ${queryText}`);
+    console.log(`Searching for: ${trimmedQuery}`);
+
+    // 🔁 Clear previous search results and show loading
+    dispatch(resetGPTSearch());
+    dispatch(setLastQuery(trimmedQuery));
+    dispatch(setLoading(true));
 
     const gptQuery = `Act as a Movie Recommendation system and suggest some movies for the query text: ${queryText}. Only give me the name of 5 movies, comma separated. Like the example result given ahead. Example result: Gadar, Shole, Don, PK, Golmaal`;
 
@@ -55,6 +68,8 @@ export const useSearchMovies = () => {
       );
     } catch (error) {
       console.error('Error while calling GPT or TMDB API:', error);
+    } finally {
+      dispatch(setLoading(false));
     }
   };
 
